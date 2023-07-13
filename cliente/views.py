@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Dados_Pessoais, Endereco, Conta
+from .models import DadosPessoais, Endereco, Conta
 
 def home(request):
     return HttpResponse('Olá mundo')
