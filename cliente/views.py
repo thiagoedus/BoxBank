@@ -23,6 +23,30 @@ def cadastrar_conta(request):
         cidade = request.POST.get('cidade')
         estado = request.POST.get('estado')
 
+        try:
+            cliente = DadosPessoais(
+                nome_completo = nome,
+                cpf = cpf,
+                telefone = telefone,
+                rg = rg,
+                email = email,
+                data_nascimento = data_nascimento,
+                senha = ...
+            )
+
+            endereco = Endereco(
+                logradouro = logradouro,
+                numero = numero,
+                bairro = bairro,
+                cidade = cidade,
+                estado = estado,
+                cliente = cliente,
+            )
+        except:
+            print('Erro encontrado')
+
+
+
         return redirect('home')
 
 
