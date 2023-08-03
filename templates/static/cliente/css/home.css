@@ -7,7 +7,7 @@
 }
 
 .saldo{
-    border-left: 2px solid var(--contrast-color);
+    border-left: 2px solid #189FD9;
     padding-left: 10px;
 }
 
@@ -48,7 +48,7 @@
     font-size: 18px;
 
     padding: 10px;
-    background-color: var(--contrast-color);
+    background-color: #189FD9;
     text-align: center;
     border-radius: 15px;
     border: none;

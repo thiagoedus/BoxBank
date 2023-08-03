@@ -7,28 +7,17 @@
 {% block 'body' %}
         <br>
         <br>
-        <div class="row">
-            <div class="col-md-3">
-                <a style="text-decoration: none; color:white;" href="#">
-                    <div class="card">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <span  class="fonte-destaque">RS 1.000,00</span>
-                            </div>
-                            <div class="col-md">
-                                <img class="icone-setas" src="">
-                            </div>
-                        </div>
         
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-3">
+            
+                
+            
+            
                 <a style="text-decoration: none; color:white;" href="#">
                     <div class="card">
                         <div class="row">
                             <div class="col-md-8">
-                                <span  class="fonte-destaque">RS 1.000,00</span>
+                                <span  class="fonte-destaque">Sua conta</span><br><br>
+                                <span  class="fonte-destaque">Saldo total: RS 1.000,00</span>
                             </div>
                             <div class="col-md">
                                 <img class="icone-setas" src="">
@@ -36,22 +25,23 @@
                         </div> 
                     </div>
                 </a>
-            </div>
-        </div>
+            
         <br>
         <br>
        
-        <div class="row">
+        
 
-            <div class="col-md-4">
+            
                 <div class="card">
-                    <div class="saldo">
-                        <span class="fonte-destaque">Saldo total</span>
-                        <br>
-                        <span class="font-light">R$ {{ total_contas }}</span>
-                    </div>
+                    <span class="fonte-destaque">Cartão de Crédito</span>
                     <hr class="hr-borda">
-                    <span class="fonte-destaque">Suas contas</span>
+                    <div class="saldo">
+                        <span class="fonte-destaque">Fatura atual</span>
+                        <br>
+                        <span class="font-light">R$ 0,00</span>
+                    </div>
+                    
+                    
 
                     <div class="div-contas">
                             
@@ -66,12 +56,11 @@
                                
                     </div>
                     <hr class="hr-borda">
-                    <a href="" class="botao-principal">Gerenciar contas</a>
+                    <a href="" class="botao-principal">Ver Fatura</a>
                 </div>
                 
-            </div>
-
-            <div class="col-md-8">
+                <br>
+            
                 <div class="card">
                     <div class="row">
                         <div class="col-md">
@@ -97,12 +86,12 @@
                     <hr class="hr-borda">
                     <a href="#" class="botao-principal">Gerenciar dados mensais</a>
                 </div>
-            </div>
+            
 
-        </div>
+        
         <br>
-        <div class="row">
-            <div class="col-md-4">
+        
+            
                 <div class="card">
                     <div class="saldo">
                         <span class="fonte-destaque">Planejamento</span>
@@ -110,8 +99,8 @@
                     <hr class="hr-borda">
                     <a href="#" class="botao-principal">Definir planejamento</a>
                 </div>
-            </div>
-            <div class="col-md-8">
+            
+            
                 <div class="card">
                     <span class="fonte-destaque">Equilibrio financeiro</span>
                     <hr class="hr-borda">
@@ -130,14 +119,14 @@
                     <a href="#" class="botao-principal">Alterar categorias essenciais</a>
 
                 </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-4">
-            </div>
             
-            <div class="col-md-8">
+        
+        <br>
+        
+            
+            
+            
+            
                 <div class="card">
                     <span class="fonte-destaque">Gerenciar contas</span>
                     <hr class="hr-borda">
@@ -153,8 +142,8 @@
                     <a href="#" class="botao-principal">Ver mais</a>
 
                 </div>
-            </div>
-        </div>
+            
+        
         <br>
         <br>
 {% endblock %}
