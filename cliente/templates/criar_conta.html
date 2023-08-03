@@ -1,0 +1,38 @@
+{% extends 'bases/base.html'%}
+{% load static %}
+
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'cliente/css/cliente.css' %}">
+{% endblock %}
+
+{% block 'body' %}
+    <div class="row">
+        <div class="col">
+        <form action="{% url 'cadastrar_conta' %}" method="POST"> {% csrf_token %}
+            <div class="form-group">
+                <span>Nome </span><input class="form-control input-form" type="text" name="nome" id=""><br>
+                <span>CPF </span><input class="form-control input-form" type="text" name="cpf" id=""><br>
+                <span>Telefone </span><input class="form-control input-form" type="text" name="telefone" id=""><br>
+                <span>RG </span><input class="form-control input-form" type="text" name="rg" id=""><br>
+                <span>Email </span><input class="form-control input-form" type="text" name="email" id=""><br>
+                <span>Data de Nascimento </span><input class="form-control input-form" type="text" name="data_nascimento" id=""><br>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <span>Logradouro </span><input class="form-control input-form" type="text" name="logradouro" id=""><br>
+                <span>Número </span><input class="form-control input-form" type="number" name="numero" id=""><br>
+                <span>Bairro </span><input class="form-control input-form" type="text" name="bairro" id=""><br>
+                <span>Cidade </span><input class="form-control input-form" type="text" name="cidade" id=""><br>
+                <span>Estado </span><input class="form-control input-form" type="text" name="estado" id=""><br>
+            </div>
+        </div>
+    </div>
+
+
+            <input class="btn btn-principal" type="submit" value="Cadastrar">
+        
+        </form>
+    <br>
+    <br>
+{% endblock %}

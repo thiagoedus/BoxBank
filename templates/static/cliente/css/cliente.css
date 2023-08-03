@@ -1,0 +1,31 @@
+.btn-principal {
+    padding: 10px;
+    width: 50%;
+    height: 40px;
+    color: white;
+    background-color: #189FD9;
+    border-radius: 30px;
+}
+
+.btn-principal:hover {
+    background-color: #0b6389;
+}
+
+.btn-abrir-conta {
+    padding: 10px;
+    width: 50%;
+    height: 40px;
+    color: rgb(0, 0, 0);
+    background-color: #ffffff;
+    border-radius: 30px;
+    border: 1px solid black;
+}
+
+.btn-abrir-conta:hover {
+    background-color: #979494;
+    color: rgb(0, 0, 0);
+}
+
+.input-form {
+    border-radius: 10px;
+}

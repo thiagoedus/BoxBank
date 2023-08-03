@@ -1,0 +1,24 @@
+{% extends 'bases/base.html' %}
+
+{% block 'body' %}
+    <div class="row">
+        <div class="col">
+            <h1>Realizar depósito</h1>
+            <form action="" method="POST"> {% csrf_token %}
+            <span>Conta: </span><input type="text" name="conta_destino" id="">
+            <span>Agencia: </span><input type="text" name="agencia" id="">
+            <span>Banco: </span><input type="text" name="banco" id="">
+            <span>Valor: </span><input type="text" name="valor_transferencia" id="">
+            </form> 
+        </div>
+        <div class="col">
+            <h1>Realizar Pix</h1>
+            <form action="" method="POST"> {% csrf_token %}
+                <span>Chave Pix: </span><input type="text" name="chave_pix_beneficiario" id="">
+                <span>Valor: </span><input type="text" name="valor_pix" id="">
+                <input type="submit" value="Realizar Pix">
+            </form>
+        </div> 
+    </div>
+
+{% endblock %}

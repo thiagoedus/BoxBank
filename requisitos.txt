@@ -1,0 +1,34 @@
+Administrador do sistema:
+ - Permissões de gerenciamento de usuários e permissões, como criar, modificar e excluir contas de 
+    usuário.
+ - Acesso total às configurações do sistema e à infraestrutura do banco de dados.
+
+
+Gerente de Contas:
+ - Permissões para gerenciar contas de clientes atribuídas a eles.
+ - Acesso para visualizar informações detalhadas das contas e realizar operações autorizadas nos 
+    dados dos clientes.
+ - Bloquear e desbloquear contas de clientes
+
+
+Caixa / Atendente:
+ - Permissões para realizar transações e operações de caixa, como depósitos, saques, transferências, 
+    pagamentos de contas, entre outros.
+ - Geralmente, esses usuários têm acesso limitado a informações pessoais do cliente.
+
+ 
+Analista de Crédito:
+ - Permissões para analisar e aprovar solicitações de crédito e empréstimos.
+ - Acesso a informações financeiras mais detalhadas dos clientes.
+
+
+Auditor:
+ - Permissões para acessar registros de auditoria e rastrear atividades de usuários para garantir a 
+    conformidade e segurança do sistema.
+ - Acesso restrito a dados confidenciais do cliente, normalmente limitado a fins de auditoria.
+
+
+Cliente:
+ - Permissões para acessar e gerenciar sua própria conta bancária.
+ - Acesso a funcionalidades como consulta de saldo, histórico de transações, transferências próprias, 
+    entre outros.

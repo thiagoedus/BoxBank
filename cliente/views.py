@@ -1,13 +1,16 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import DadosPessoais, Endereco, Conta
+from .models import Cliente, Endereco, Conta
 
 def home(request):
-    return HttpResponse('Olá mundo')
+    return render(request, 'home.html')
+
+def login(request):
+    return render(request, 'login.html')
 
 def cadastrar_conta(request):
     if request.method == 'GET':
-        ...
+        return render(request, 'criar_conta.html')
     
     elif request.method == 'POST':
         nome = request.POST.get('nome')
@@ -23,29 +26,33 @@ def cadastrar_conta(request):
         cidade = request.POST.get('cidade')
         estado = request.POST.get('estado')
 
-        try:
-            cliente = DadosPessoais(
-                nome_completo = nome,
-                cpf = cpf,
-                telefone = telefone,
-                rg = rg,
-                email = email,
-                data_nascimento = data_nascimento,
-                senha = ...
-            )
 
-            endereco = Endereco(
-                logradouro = logradouro,
-                numero = numero,
-                bairro = bairro,
-                cidade = cidade,
-                estado = estado,
-                cliente = cliente,
-            )
-        except:
-            print('Erro encontrado')
+        cliente = Cliente(
+            nome_completo = nome,
+            cpf = cpf,
+            telefone = telefone,
+            rg = rg,
+            email = email,
+            data_nascimento = data_nascimento
+        )
 
+        cliente.save()
 
+    
+        endereco = Endereco(
+            logradouro = logradouro,
+            numero = numero,
+            bairro = bairro,
+            cidade = cidade,
+            estado = estado,
+            cliente = cliente,
+        )
+        endereco.save()
+
+        #TODO Consertar erro de endereço
+
+        
+        
 
         return redirect('home')
 

@@ -1,14 +1,16 @@
 from django.db import models
 from datetime import datetime
+from django.contrib.auth.models import AbstractUser
 
-class DadosPessoais(models.Model):
+class Cliente(AbstractUser):
     nome_completo = models.CharField(max_length=60)
+    nome_usuario = models.CharField(max_length=35)
     cpf = models.CharField(max_length=11)
     telefone = models.CharField(max_length=11)
     rg = models.CharField(max_length=10)
     email = models.CharField(max_length=60)
     data_nascimento = models.DateField()
-    senha = models.CharField(max_length=30)
+
 
     def __str__(self):
         return self.nome_completo
@@ -19,7 +21,7 @@ class Endereco(models.Model):
     bairro = models.CharField(max_length=30)
     cidade = models.CharField(max_length=30)
     estado = models.CharField(max_length=2)
-    cliente = models.ForeignKey(DadosPessoais, on_delete=models.CASCADE)
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.logradouro
