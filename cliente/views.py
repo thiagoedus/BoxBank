@@ -49,13 +49,20 @@ def cadastrar_conta(request):
         )
         endereco.save()
 
-        #TODO Consertar erro de endereço
+        
 
         
         
 
         return redirect('home')
 
+def realizar_emprestimo(request):
+    if request.method == 'GET':
+        return render(request, 'emprestimo.html')
 
 
+def tranferencia_pix(request):
+    return render(request, 'tranferencia_pix.html')
 
+def pagar_boleto(request):
+    return render(request, 'pagar_boleto.html')
