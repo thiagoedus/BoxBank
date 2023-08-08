@@ -47,12 +47,7 @@ def cadastrar_conta(request):
             estado = estado,
             cliente = cliente,
         )
-        endereco.save()
-
-        
-
-        
-        
+        endereco.save()        
 
         return redirect('home')
 
@@ -62,7 +57,16 @@ def realizar_emprestimo(request):
 
 
 def tranferencia_pix(request):
-    return render(request, 'tranferencia_pix.html')
+    contas = Conta.objects.all()
+    return render(request, 'tranferencia_pix.html', {'contas': contas})
 
 def pagar_boleto(request):
     return render(request, 'pagar_boleto.html')
+
+def confirmar_transferencia(request, chave_pix):
+    conta_origem = Conta.objects.get(id=request.user)
+    conta_destino = Conta.objects.get(id=id)
+    valor = request.POST.get('valor')
+    conta_origem.saque(valor)
+    conta_origem.deposito(valor)
+    return render(request, 'confirmar_transferencia.html')

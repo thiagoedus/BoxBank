@@ -4,11 +4,10 @@ from django.contrib.auth.models import AbstractUser
 
 class Cliente(AbstractUser):
     nome_completo = models.CharField(max_length=60)
-    nome_usuario = models.CharField(max_length=35)
     cpf = models.CharField(max_length=11, unique=True)
     telefone = models.CharField(max_length=11)
     rg = models.CharField(max_length=10, unique=True)
-    email = models.CharField(max_length=60)
+    email = models.CharField(max_length=60, unique=True)
     data_nascimento = models.DateField()
 
 
@@ -28,12 +27,12 @@ class Endereco(models.Model):
 
 
 class Conta(models.Model):
-    numero_conta = models.CharField(max_length=12)
+    numero_conta = models.CharField(max_length=12, unique=True)
     agencia = models.CharField(max_length=6)
     saldo = models.FloatField()
     data_abertura = models.DateField(default=datetime.now())
     status_conta = models.CharField(max_length=12)
-    chave_pix = models.CharField(max_length=50)
+    chave_pix = models.CharField(max_length=50, unique=True)
 
     def __str__(self):
         return self.numero_conta
