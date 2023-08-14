@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import AbstractUser
+from django.utils import timezone
 
 class Cliente(AbstractUser):
     nome_completo = models.CharField(max_length=60)
@@ -8,7 +9,6 @@ class Cliente(AbstractUser):
     telefone = models.CharField(max_length=11)
     rg = models.CharField(max_length=10, unique=True)
     email = models.CharField(max_length=60, unique=True)
-    data_nascimento = models.DateField()
 
 
     def __str__(self):

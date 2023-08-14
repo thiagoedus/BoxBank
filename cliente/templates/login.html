@@ -6,9 +6,9 @@
 {% endblock %}
 
 {% block 'body' %}
-        <form action="{% url 'cadastrar_conta' %}" method="POST"> {% csrf_token %}
+        <form action="{% url 'login' %}" method="POST"> {% csrf_token %}
             <div class="form-group">
-                <span>Nome de Usuario </span><input class="form-control input-form" type="text" name="nome_usuario" id="" placeholder="Digite o seu nome de usuário"><br>
+                <span>Nome de Usuario </span><input class="form-control input-form" type="text" name="username" id="" placeholder="Digite o seu nome de usuário"><br>
                 <span>Senha </span><input class="form-control input-form" type="text" name="senha" id="" placeholder="Digite a sua senha"><br><br>
             <input class="btn btn-principal" type="submit" value="Entrar">
             </div>
