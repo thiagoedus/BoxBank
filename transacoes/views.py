@@ -39,6 +39,24 @@ def realizar_pix(request):
     
 
 
+def realizar_emprestimo(request):
+    if request.method == 'GET':
+        return render(request, 'emprestimo.html')
 
+
+def tranferencia_pix(request):
+    contas = Conta.objects.all()
+    return render(request, 'tranferencia_pix.html', {'contas': contas})
+
+def pagar_boleto(request):
+    return render(request, 'pagar_boleto.html')
+
+def confirmar_transferencia(request, chave_pix):
+    conta_origem = Conta.objects.get(id=request.user)
+    conta_destino = Conta.objects.get(id=id)
+    valor = request.POST.get('valor')
+    conta_origem.saque(valor)
+    conta_origem.deposito(valor)
+    return render(request, 'confirmar_transferencia.html')
 
     

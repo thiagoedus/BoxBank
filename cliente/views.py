@@ -2,12 +2,18 @@ from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
 from .models import Cliente, Endereco, Conta
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import authenticate
-from django.contrib.auth import login as login_django
+from django.contrib import auth
+from . import generators
 
-@login_required(login_url="/conta/login")
+
+@login_required(login_url="/conta/login/")
 def home(request):
-    return render(request, 'home.html')
+    id_user: int = request.user.get_id
+    print(id_user)
+    conta = Conta.objects.get(cliente=id_user)
+    user = Cliente.objects.get(id=id_user)
+    print(conta.numero_conta)
+    return render(request, 'home.html', {'conta': conta, 'user': user})
 
 def login(request):
     if request.method == 'GET':
@@ -16,16 +22,18 @@ def login(request):
         username = request.POST.get('username')
         senha = request.POST.get('senha')
 
-        user = authenticate(username=username, password=senha)
+        user = auth.authenticate(username=username, password=senha)
 
-        if not user:
-            return HttpResponse('Login inválido')
-            #TODO mensagem personalizada
-
+        if user is None:
+            return HttpResponse("Um erro foi encontrado")
         
-        login_django(request, user)
+        auth.login(request, user)
         return redirect(reverse('home'))
 
+def logout(request):
+    if request.session:
+        request.session.flush()
+        return redirect(reverse('login'))
 
 def cadastrar_conta(request):
     if request.method == 'GET':
@@ -38,8 +46,8 @@ def cadastrar_conta(request):
         rg = request.POST.get('rg')
         email = request.POST.get('email')
         data_nascimento = request.POST.get('data_nascimento')
-        username = 'thiagoedus'
-        password = '123'
+        username = 'thiagohenriq'
+        password = '123456'
 
         logradouro = request.POST.get('logradouro')
         numero = request.POST.get('numero')
@@ -55,7 +63,6 @@ def cadastrar_conta(request):
             telefone = telefone,
             rg = rg,
             email = email,
-            data_nascimento = data_nascimento,
             password = password
         )
 
@@ -70,26 +77,22 @@ def cadastrar_conta(request):
             estado = estado,
             cliente = cliente,
         )
-        endereco.save()        
-
-        return redirect('home')
-
-def realizar_emprestimo(request):
-    if request.method == 'GET':
-        return render(request, 'emprestimo.html')
+        endereco.save()
 
 
-def tranferencia_pix(request):
-    contas = Conta.objects.all()
-    return render(request, 'tranferencia_pix.html', {'contas': contas})
+        num_conta = generators.gerar_conta()
+        agencia_conta = generators.gerar_agencia(estado)
+        STATUS_CONTA_CRIADA = 'BLOQUEADA'
+    
+        conta = Conta(
+            numero_conta = num_conta,
+            agencia = agencia_conta,
+            status_conta = STATUS_CONTA_CRIADA,
+            cliente = cliente
+        )
 
-def pagar_boleto(request):
-    return render(request, 'pagar_boleto.html')
+        conta.save() #TODO bloqueio de conta
 
-def confirmar_transferencia(request, chave_pix):
-    conta_origem = Conta.objects.get(id=request.user)
-    conta_destino = Conta.objects.get(id=id)
-    valor = request.POST.get('valor')
-    conta_origem.saque(valor)
-    conta_origem.deposito(valor)
-    return render(request, 'confirmar_transferencia.html')
+
+        return redirect(reverse('home'))
+

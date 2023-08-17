@@ -3,7 +3,9 @@ from . import views
 
 urlpatterns = [
     #path('transacao', views.transacao, 'transacao'),
-    path('realizar_transferencia', views.realizar_transferencia, name='realizar_tranferencia'),
-    path('realizar_pix', views.realizar_pix, name='realizar_pix')
+    path('realizar_emprestimo/', views.realizar_emprestimo, name='realizar_emprestimo'),
+    path('tranferencia_pix/', views.tranferencia_pix, name='tranferencia_pix'),
+    path('pagar_boleto/', views.pagar_boleto, name='pagar_boleto'),
+    path('confirmar_transferencia/<str:chave_pix>', views.confirmar_transferencia, name='confirmar_transferencia')
 
 ]

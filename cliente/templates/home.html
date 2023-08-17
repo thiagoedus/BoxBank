@@ -4,6 +4,11 @@
 {% block 'head' %}
     <link rel="stylesheet" href="{% static 'cliente/css/home.css' %}">
 {% endblock %}
+
+{% block 'user_name' %}
+        Olá {{user.user}}
+{% endblock %}
+
 {% block 'body' %}
         <br>
         <br>

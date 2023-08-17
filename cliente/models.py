@@ -13,6 +13,14 @@ class Cliente(AbstractUser):
 
     def __str__(self):
         return self.nome_completo
+    
+    @property
+    def get_id(self):
+        return self.id
+    
+    @property
+    def get_name(self):
+        return self.nome_completo
 
 class Endereco(models.Model):
     logradouro = models.CharField(max_length=120)
@@ -26,13 +34,16 @@ class Endereco(models.Model):
         return self.logradouro
 
 
+
 class Conta(models.Model):
     numero_conta = models.CharField(max_length=12, unique=True)
     agencia = models.CharField(max_length=6)
-    saldo = models.FloatField()
+    banco = models.CharField(default='0934', max_length=4)
+    saldo = models.FloatField(default=0)
     data_abertura = models.DateField(default=datetime.now())
     status_conta = models.CharField(max_length=12)
-    chave_pix = models.CharField(max_length=50, unique=True)
+    chave_pix = models.CharField(max_length=50, unique=True, null=True, blank=True)
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.numero_conta

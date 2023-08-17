@@ -5,9 +5,12 @@ def gerar_conta():
     conta = Conta.objects.all()
     conta_cliente = ''
     while len(conta_cliente) < 8:
-        conta_cliente = str(randint(0, 9))
-    if conta_cliente in conta:
-        gerar_conta()
+        num_add = str(randint(0, 10))
+        if not conta_cliente:
+            conta_cliente += num_add
+        if num_add == conta_cliente[-1]:
+            continue
+        conta_cliente += num_add
     return conta_cliente
 
 def gerar_agencia(estado):
@@ -41,6 +44,6 @@ def gerar_agencia(estado):
         "TO": "1290",
     }
 
-    estado_ag = estados['estado']
+    estado_ag = estados[estado]
     if estado_ag:
         return estado_ag
