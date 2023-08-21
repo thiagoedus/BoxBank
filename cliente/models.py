@@ -4,15 +4,15 @@ from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
 
 class Cliente(AbstractUser):
-    nome_completo = models.CharField(max_length=60)
-    cpf = models.CharField(max_length=11, unique=True)
-    telefone = models.CharField(max_length=11)
-    rg = models.CharField(max_length=10, unique=True)
-    email = models.CharField(max_length=60, unique=True)
+    nome_completo = models.CharField(max_length=60, null=True, blank=True)
+    cpf = models.CharField(max_length=11, unique=True, null=True, blank=True)
+    telefone = models.CharField(max_length=11, null=True, blank=True)
+    rg = models.CharField(max_length=10, unique=True, null=True, blank=True)
+    email = models.CharField(max_length=60, unique=True, null=True, blank=True)
 
 
     def __str__(self):
-        return self.nome_completo
+        return str(self.nome_completo)
     
     @property
     def get_id(self):
@@ -46,18 +46,18 @@ class Conta(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return self.numero_conta
+        return str(self.numero_conta)
     
     def saque(self, valor):
-        if self.saldo < valor:
+        if self.saldo < float(valor):
             return
         else:
-            self.saldo -= valor
+            self.saldo -= float(valor)
             return valor
         
     def deposito(self, valor):
-        if valor > 15000:
+        if float(valor) > 15000:
             return
-        self.saldo += valor
+        self.saldo += float(valor)
         return valor
     

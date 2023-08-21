@@ -1,0 +1,9 @@
+{% extends 'bases/base.html' %}
+
+{% block 'body' %}
+    <form method="POST"> {% csrf_token %}
+        <input type="text" name="chave_pix_beneficiario" id=""><br>
+        <input type="text" name="valor_pix" id="">
+        <input type="submit" value="Transferir">
+    </form>
+{% endblock %}

@@ -22,10 +22,8 @@ def login(request):
         username = request.POST.get('username')
         senha = request.POST.get('senha')
 
-        user = auth.authenticate(username=username, password=senha)
+        user = auth.authenticate(request, username=username, password=senha)
 
-        if user is None:
-            return HttpResponse("Um erro foi encontrado")
         
         auth.login(request, user)
         return redirect(reverse('home'))
@@ -46,8 +44,8 @@ def cadastrar_conta(request):
         rg = request.POST.get('rg')
         email = request.POST.get('email')
         data_nascimento = request.POST.get('data_nascimento')
-        username = 'thiagohenriq'
-        password = '123456'
+        username = request.POST.get('username')
+        password = request.POST.get('senha')
 
         logradouro = request.POST.get('logradouro')
         numero = request.POST.get('numero')

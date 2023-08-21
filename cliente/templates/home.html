@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block 'user_name' %}
-        Olá {{user.user}}
+        Olá {{user.username}}
 {% endblock %}
 
 {% block 'body' %}
@@ -22,6 +22,7 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <span  class="fonte-destaque">Sua conta</span><br><br>
+                                <span  class="fonte-destaque">{{ conta.numero_conta }}</span><br><br>
                                 <span  class="fonte-destaque">Saldo total: RS 1.000,00</span>
                             </div>
                             <div class="col-md">
