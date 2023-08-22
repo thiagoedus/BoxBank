@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block 'head' %}
+    <title>Box Bank | {{user.nome_completo}}</title>
     <link rel="stylesheet" href="{% static 'cliente/css/home.css' %}">
 {% endblock %}
 
@@ -23,7 +24,7 @@
                             <div class="col-md-8">
                                 <span  class="fonte-destaque">Sua conta</span><br><br>
                                 <span  class="fonte-destaque">{{ conta.numero_conta }}</span><br><br>
-                                <span  class="fonte-destaque">Saldo total: RS 1.000,00</span>
+                                <span  class="fonte-destaque">Saldo total: R$ {{conta.saldo}}0</span>
                             </div>
                             <div class="col-md">
                                 <img class="icone-setas" src="">
@@ -69,7 +70,7 @@
 
                 <th scope="col">
                     <div class='link-home'>
-                        <a href="#" class="link-item">
+                        <a href="{% url 'gerar_boleto' %}" class="link-item">
                             <i class="fa-solid fa-piggy-bank" style="color: #189fd9; font-size: 50px;"></i><br>
                             <span style="font-size: 20px; color:#189fd9;">Depositar</span>
                         </a>

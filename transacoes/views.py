@@ -2,6 +2,7 @@ from django.shortcuts import render
 from cliente.models import Conta, Cliente
 from transacoes.models import Transacao
 from django.http import HttpResponse
+from operacoes.models import Boleto
 
 def realizar_transferencia(request):
 
@@ -61,11 +62,27 @@ def realizar_emprestimo(request):
     if request.method == 'GET':
         return render(request, 'emprestimo.html')
 
-
 def pagar_boleto(request):
-    return render(request, 'pagar_boleto.html')
+    if request.method == 'GET':
+        return render(request, 'pagar_boleto.html')
+    elif request.method == 'POST':
+        codigo = request.POST.get('codigo_boleto')
+        boleto = Boleto.objects.get(codigo=codigo)
+        return render(request, 'confirmar_boleto.html', {'boleto': boleto})
 
-def confirmar_transferencia(request, chave_pix):
+def confirmar_boleto(request, codigo_boleto):
+    boleto = Boleto.objects.get(codigo=codigo_boleto)
+    conta_pagador = Conta.objects.get(cliente_id=request.user.get_id)
+    conta_beneficiario = Conta.objects.get(id=boleto.conta_beneficiaria_id)
+    conta_pagador.saque(boleto.valor)
+    conta_beneficiario.deposito(boleto.valor)
+    conta_pagador.save()
+    conta_beneficiario.save()
+    return HttpResponse('foi')
+
+    #TODO Emitir comprovante
+
+def confirmar_transferencia(request):
     conta_origem = Conta.objects.get(id=request.user)
     conta_destino = Conta.objects.get(id=id)
     valor = request.POST.get('valor')

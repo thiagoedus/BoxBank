@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'cliente',
     'transacoes',
     'extrato',
-    'contas_ativas',
+    'operacoes',
 ]
 
 MIDDLEWARE = [

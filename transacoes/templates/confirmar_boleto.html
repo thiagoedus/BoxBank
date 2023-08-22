@@ -1,0 +1,9 @@
+{% extends 'bases/base.html' %}
+
+{% block 'body' %}
+
+    <span>Valor: {{boleto.valor}}</span>
+
+    <a href="{% url 'confirmar_boleto' boleto.codigo%}">Confirmar</a>
+
+{% endblock %}

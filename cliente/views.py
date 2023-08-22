@@ -93,4 +93,3 @@ def cadastrar_conta(request):
 
 
         return redirect(reverse('home'))
-

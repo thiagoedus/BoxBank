@@ -2,9 +2,9 @@
 
 {% block 'body' %}
     <div>
-        <form action="" method="POST"> {% csrf_token %}
+        <form action="{% url 'pagar_boleto' %}" method="POST"> {% csrf_token %}
             <h1>Digite o código de barras</h1><br>
-            <input class="form-control" type="text" name="" id=""><br>
+            <input class="form-control" type="text" name="codigo_boleto" id=""><br>
             <input class="btn btn-success container" type="submit" value="Pagar">
         </form>
     </div>
