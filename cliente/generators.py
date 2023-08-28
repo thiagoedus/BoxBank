@@ -47,3 +47,19 @@ def gerar_agencia(estado):
     estado_ag = estados[estado]
     if estado_ag:
         return estado_ag
+
+
+def generate_credit_card():
+    number_credit_card = ''
+    cvv = ''
+    validade = '2030-09-13'
+    
+    while len(number_credit_card) < 16:
+        number_credit_card += str(randint(0, 9))
+
+    while len(cvv) < 3:
+        cvv += str(randint(0, 9))
+        if cvv[0] == cvv[1] or cvv[0] == cvv[2] or cvv:
+            cvv = ''
+    
+    return {'number': number_credit_card, 'cvv': cvv, 'validade': validade}

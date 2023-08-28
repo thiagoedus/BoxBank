@@ -1,0 +1,10 @@
+{% extends 'bases/base.html' %}
+
+{% block 'body' %}
+
+    <form action="{% url %}" method="POST">
+        <input type="text" name="credit-limit" id="">
+        <input type="submit" value="Pedir Limite">
+    </form>
+
+{% endblock %}

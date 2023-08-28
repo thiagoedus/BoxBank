@@ -3,6 +3,7 @@ from cliente.models import Conta, Cliente
 from transacoes.models import Transacao
 from django.http import HttpResponse
 from operacoes.models import Boleto
+from django.utils import timezone
 
 def realizar_transferencia(request):
 
@@ -26,7 +27,6 @@ def realizar_transferencia(request):
     conta_origem.saque(float(valor_transferencia))
 
     return HttpResponse("Olá")
-
 
 
 def tranferencia_pix(request):
@@ -56,11 +56,10 @@ def tranferencia_pix(request):
         return HttpResponse('Foi')
     
         
-
-
 def realizar_emprestimo(request):
     if request.method == 'GET':
         return render(request, 'emprestimo.html')
+
 
 def pagar_boleto(request):
     if request.method == 'GET':
@@ -70,17 +69,37 @@ def pagar_boleto(request):
         boleto = Boleto.objects.get(codigo=codigo)
         return render(request, 'confirmar_boleto.html', {'boleto': boleto})
 
+
 def confirmar_boleto(request, codigo_boleto):
     boleto = Boleto.objects.get(codigo=codigo_boleto)
+    if boleto.get_situacao == 'PAGO':
+        return HttpResponse('O boleto não está aberto')
+    
+    pagador = Cliente.objects.get(id=request.user.get_id)
     conta_pagador = Conta.objects.get(cliente_id=request.user.get_id)
+
     conta_beneficiario = Conta.objects.get(id=boleto.conta_beneficiaria_id)
+
     conta_pagador.saque(boleto.valor)
     conta_beneficiario.deposito(boleto.valor)
+
     conta_pagador.save()
     conta_beneficiario.save()
+
+    print(pagador.id)
+    print(conta_pagador)
+
+    boleto.pagador = pagador
+    boleto.conta_pagador = conta_pagador
+    boleto.situacao = 'PAGO'
+
+    boleto.data_e_hora_pagamento = timezone.now()
+
+    boleto.save()
     return HttpResponse('foi')
 
     #TODO Emitir comprovante
+
 
 def confirmar_transferencia(request):
     conta_origem = Conta.objects.get(id=request.user)

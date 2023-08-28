@@ -1,3 +1,13 @@
+@media (max-width: 600px) {
+    .link-home{
+        display: none;
+    }
+
+    .link-item {
+        display: none;
+    }
+}
+
 table th{
     border:none !important;
   }
@@ -65,6 +75,7 @@ table th{
     padding-right: 10px;
 }
 
+
 .negativo{
     color: var(--differential-color);
 }
@@ -89,7 +100,7 @@ table th{
     align-items: center;
     text-align: center;
     flex-direction: row;
-    flex-wrap: wrap;
+    
 }
 
 .link-item {
@@ -103,3 +114,4 @@ table th{
 .table-nav {
     border: none;
 }
+

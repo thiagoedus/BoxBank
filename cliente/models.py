@@ -67,13 +67,14 @@ class CreditCard(models.Model):
     validade = models.DateField()
     codigo_seguranca = models.CharField(max_length=3)
     bandeira = models.CharField(max_length=4, default='MC')
-    limite = models.FloatField()
+    limite = models.FloatField(default=0)
     limite_usado = models.FloatField(default=0)
     emissao = models.DateField()
     endereco_cobranca = models.CharField(max_length=12)
     status = models.CharField(max_length=12, default='BLOQUEADO')
     tipo = models.CharField(max_length=15)
     data_vencimento_fatura = models.DateField()
+    conta = models.ForeignKey(Conta, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.numero_cartao

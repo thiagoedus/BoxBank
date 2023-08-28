@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import Cliente, Endereco, Conta
+from .models import Cliente, Endereco, Conta, CreditCard
 
 admin.site.register(Cliente)
 admin.site.register(Endereco)
 admin.site.register(Conta)
+admin.site.register(CreditCard)

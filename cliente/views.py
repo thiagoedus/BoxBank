@@ -1,19 +1,22 @@
 from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
-from .models import Cliente, Endereco, Conta
+from .models import Cliente, Endereco, Conta, CreditCard
 from django.contrib.auth.decorators import login_required
 from django.contrib import auth
 from . import generators
+from django.utils import timezone
+from django.shortcuts import get_object_or_404
 
 
 @login_required(login_url="/conta/login/")
 def home(request):
     id_user: int = request.user.get_id
-    print(id_user)
     conta = Conta.objects.get(cliente=id_user)
     user = Cliente.objects.get(id=id_user)
-    print(conta.numero_conta)
-    return render(request, 'home.html', {'conta': conta, 'user': user})
+    credit_card = CreditCard.objects.filter(conta_id=conta.id)
+    if not credit_card:
+        return render(request, 'home.html', {'conta': conta, 'user': user})
+    return render(request, 'home.html', {'conta': conta, 'user': user, 'credit_card': credit_card})
 
 def login(request):
     if request.method == 'GET':
@@ -93,3 +96,26 @@ def cadastrar_conta(request):
 
 
         return redirect(reverse('home'))
+
+def request_credit_card(request):
+    if request.method == 'GET':
+        return render(request, 'credit_card.html')
+    elif request.method == 'POST':
+        request_limit = request.POST.get('credit-limit')
+        conta_user = Conta.objects.get(cliente_id=request.user.get_id)
+        if request_limit > conta_user.saldo:
+            HttpResponse('Limite supera o saldo da conta')
+        else:
+            endereco_cobranca = Endereco.objects.get(cliente_id=request.user.get_id)
+            credit_card_generated = generators.generate_credit_card()
+            credit_card = CreditCard(
+                numero_cartao = credit_card_generated['number'],
+                validade = credit_card_generated['validade'],
+                codigo_seguranca = credit_card_generated['cvv'],
+                limite = request_limit,
+                emissao = timezone.now,
+                endereco_cobranca = endereco_cobranca,
+                data_vencimento_fatura = '2023-09-05',
+                conta = conta_user
+            )
+            HttpResponse(f'Parabéns! Seu novo limite é de {request_limit}')
