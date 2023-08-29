@@ -28,6 +28,7 @@ class Endereco(models.Model):
     bairro = models.CharField(max_length=30)
     cidade = models.CharField(max_length=30)
     estado = models.CharField(max_length=2)
+    cep = models.CharField(max_length=15, null=True, blank=True)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
 
     def __str__(self):

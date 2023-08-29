@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from . import generators
-from cliente.models import Cliente, Conta
+from . import generators, utils
+from cliente.models import Cliente, Conta, Endereco
 from datetime import datetime
 from .models import Boleto
 from django.http import HttpResponse
+import pdfkit
 
 def boleto(request):
     return render(request, 'boleto.html')
@@ -16,7 +17,7 @@ def gerar_boleto(request):
         beneficiario = Cliente.objects.get(id=request.user.get_id)
         conta_beneficiario = Conta.objects.get(cliente=beneficiario)
         data_hora_processamento = datetime.now()
-        vencimento = '2023-04-12'
+        vencimento = '2023-09-12'
         situacao = 'ABERTO'
         valor = float(request.POST.get('valor_boleto'))
 
@@ -32,6 +33,10 @@ def gerar_boleto(request):
 
         boleto.save()
 
-        return HttpResponse('Foi')
+        endereco_beneficiario = Endereco.objects.get(cliente=request.user.get_id)
 
+        save_to = pdfkit.from_string(utils.html_dj, 'pdf_teste.pdf')
 
+        return render(request, 'boleto.html', {'beneficiario': beneficiario, 'conta_beneficiario': conta_beneficiario, 'boleto': boleto, 'endereco_beneficiario': endereco_beneficiario})
+
+        

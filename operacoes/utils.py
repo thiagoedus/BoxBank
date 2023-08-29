@@ -1,4 +1,8 @@
-{% load static %}
+import pdfkit
+
+nome = 'Thiago'
+
+html_dj = """{% load static %}
 <html charset="UTF-8">
 
     <head>
@@ -176,7 +180,7 @@
                         <br/>
                         <table border="0" style="border:none">
                             <tr>
-                                <td width="60%"><span class="text">{{beneficiario.nome_completo}}</span></td>
+                                """ + f"""<td width="60%"><span class="text">Thiago</span></td>""" + """
                                 <td><span class="text">CPF/CNPJ {{beneficiario.cpf}}</span></td>
                             </tr>
                         </table>
@@ -476,4 +480,4 @@
         </div>
     </body>
 
-    </html>
+    </html>"""
