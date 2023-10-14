@@ -32,3 +32,8 @@ Cliente:
  - Permissões para acessar e gerenciar sua própria conta bancária.
  - Acesso a funcionalidades como consulta de saldo, histórico de transações, transferências próprias, 
     entre outros.
+
+
+    {% block 'conta'%}
+Ag. {{ conta.agencia }} • Cc. {{ conta.numero_conta }} • Bc. {{ conta.banco }}                                   
+{% endblock %}

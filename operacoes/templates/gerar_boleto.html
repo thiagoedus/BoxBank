@@ -3,8 +3,9 @@
 {% block 'body' %}
 
     <form action="" method="POST"> {% csrf_token %}
-        <input type="text" name="valor_boleto" id="">
-        <input type="submit" value="">
+        <h1>Digite o valor para depósito</h1>
+        <input class='form-control' type="text" name="valor_boleto" id=""><br>
+        <input class='btn btn-success container' type="submit" value="Gerar Boleto">
     </form>
 
 {% endblock %}

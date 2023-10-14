@@ -2,8 +2,10 @@
 
 {% block 'body' %}
     <form method="POST"> {% csrf_token %}
-        <input type="text" name="chave_pix_beneficiario" id=""><br>
-        <input type="text" name="valor_pix" id="">
-        <input type="submit" value="Transferir">
+        <h2>Chave PIX</h2>
+        <input  class='form-control' type="text" name="chave_pix_beneficiario" id=""><br>
+        <h2>Valor</h2>
+        <input class='form-control' type="text" name="valor_pix" id=""><br>
+        <input class='btn btn-success container' type="submit" value="Transferir">
     </form>
 {% endblock %}

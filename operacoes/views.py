@@ -35,8 +35,6 @@ def gerar_boleto(request):
 
         endereco_beneficiario = Endereco.objects.get(cliente=request.user.get_id)
 
-        save_to = pdfkit.from_string(utils.html_dj, 'pdf_teste.pdf')
-
         return render(request, 'boleto.html', {'beneficiario': beneficiario, 'conta_beneficiario': conta_beneficiario, 'boleto': boleto, 'endereco_beneficiario': endereco_beneficiario})
-
+    
         
