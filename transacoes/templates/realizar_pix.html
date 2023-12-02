@@ -1,9 +1,12 @@
 {% extends 'bases/base.html' %}
 
 {% block 'body' %}
-    <form method="POST"> {% csrf_token %}
-        <input type="text" name="chave_pix_beneficiario" id=""><br>
-        <input type="text" name="valor_pix" id="">
-        <input type="submit" value="Transferir">
-    </form>
+    <div>
+        <form method="POST"> {% csrf_token %}
+            <h1>Transferência PIX</h1> <br>
+            <span>Chave PIX</span><input class="form-control" type="text" name="chave_pix_beneficiario" id=""><br>
+            <span>Valor</span><input class="form-control" type="text" name="valor_pix" id=""><br><br>
+            <input style="background-color: #189FD9;" class="btn btn-success container" type="submit" value="Transferir">
+        </form>
+    </div>
 {% endblock %}

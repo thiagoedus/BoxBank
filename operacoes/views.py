@@ -17,7 +17,7 @@ def gerar_boleto(request):
         beneficiario = Cliente.objects.get(id=request.user.get_id)
         conta_beneficiario = Conta.objects.get(cliente=beneficiario)
         data_hora_processamento = datetime.now()
-        vencimento = '2023-09-12'
+        vencimento = '2023-12-12'
         situacao = 'ABERTO'
         valor = float(request.POST.get('valor_boleto'))
 

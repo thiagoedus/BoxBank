@@ -1,10 +1,13 @@
 {% extends 'bases/base.html' %}
 
 {% block 'body' %}
-
-    <form action="" method="POST"> {% csrf_token %}
-        <input type="text" name="valor_boleto" id="">
-        <input type="submit" value="">
-    </form>
+    <div>
+        <h1>Digite o valor a ser depositado</h1>
+        <form action="" method="POST"> {% csrf_token %} <br>
+            <input class="form-control" type="text" name="valor_boleto" id=""><br>
+            <input style="background-color: #189FD9;" class="btn btn-success container" type="submit" value="Gerar">
+        </form>
+    </div>
+    
 
 {% endblock %}
