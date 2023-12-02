@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="{% static 'cliente/css/home.css' %}">
 {% endblock %}
 
+
+
 {% block 'user_name' %}
         Olá {{user.username.title}}
 {% endblock %}
@@ -22,9 +24,8 @@
                     <div class="card">
                         <div class="row">
                             <div class="col-md-8">
-                                <span  class="fonte-destaque">Sua conta</span><br><br>
-                                <span  class="fonte-destaque">{{ conta.numero_conta }}</span><br><br>
-                                <span  class="fonte-destaque">Saldo total: R$ {{conta.saldo}}0</span>
+                                <span  class="fonte-destaque">Sua conta</span><br>
+                                <span class="fonte-destaque" style="font-size: 50px; font-weight: normal">R$ {{conta.saldo}}0</span>
                             </div>
                             <div class="col-md">
                                 <img class="icone-setas" src="">
@@ -143,7 +144,7 @@
                 </div>
                 
                 <br>
-                <!--
+            
                 <div class="card">
                     <div class="row">
                         <div class="col-md">
@@ -227,6 +228,6 @@
                 </div>
             
         
-        <br>-->
+        <br>
         <br>
 {% endblock %}
