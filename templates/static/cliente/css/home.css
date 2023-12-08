@@ -103,6 +103,19 @@ table th{
     
 }
 
+.link-home2{
+    display: flex;
+    width: 100px;
+    background-color: #191919;
+    height: 100px;
+    border-radius: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: row;
+    
+}
+
 .link-item {
     display: block;
 }

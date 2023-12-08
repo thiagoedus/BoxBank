@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'transacoes',
     'extrato',
     'operacoes',
+    'cartaocredito',
 ]
 
 MIDDLEWARE = [

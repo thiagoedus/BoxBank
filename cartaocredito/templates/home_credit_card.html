@@ -1,0 +1,67 @@
+{% extends 'bases/base.html'%}
+{% load static %}
+
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'cliente/css/home.css' %}">
+
+{% endblock %}
+
+{% block 'body' %}
+
+    <div class="card">
+        <h2>Fatura atual</h2>
+        <h3>R$ 480,00</h3>
+        <br>
+        <h5>Limite Disponível: R$ 1520,00</h5>
+
+        <br>
+
+        <h6>Fatura fecha em 15 DEZ</h6>
+    </div>
+    <br><br>
+    <div class="card">
+        <table class="table table-borderless" align="center">
+            <thead>
+              <tr align="center">
+                <th scope="col">
+                    <div class='link-home2'>
+                        <a href="{% url 'pagar_boleto' %}" class="link-item">
+                            <i class="fa-solid fa-barcode" style="color: #189fd9; font-size: 30px;"></i><br>
+                            <span style="font-size: 20px; color:#189fd9;">Pagar <br> Fatura</span>
+                        </a>
+                    </div>
+                </th>
+
+                <th scope="col">
+                    <div class='link-home2'>
+                        <a href="{% url 'tranferencia_pix' %}" class="link-item">
+                            <i class="fa-solid fa-list" style="color: #189fd9; font-size: 30px;"></i><br>
+                            <span style="font-size: 20px; color:#189fd9;">Todas as Faturas</span>
+                        </a>
+                    </div>
+                </th>
+
+                <th scope="col">
+                    <div class='link-home2'>
+                        <a href="{% url 'realizar_emprestimo' %}" class="link-item">
+                            <i class="fa-solid fa-credit-card" style="color: #189fd9; font-size: 30px;"></i><br>
+                            <span style="font-size: 20px; color:#189fd9;">Meus <br> Cartões</span>
+                        </a>
+                    </div>
+                </th>
+
+                <th scope="col">
+                    <div class='link-home2'>
+                        <a href="{% url 'gerar_boleto' %}" class="link-item">
+                            <i class="fa-solid fa-dollar-sign" style="color: #189fd9; font-size: 30px;"></i><br>
+                            <span style="font-size: 20px; color:#189fd9;">Débito Automático</span>
+                        </a>
+                    </div>
+                </th>
+              </tr>
+            </thead>
+        </table>
+                     
+        
+    </div>
+{% endblock %}

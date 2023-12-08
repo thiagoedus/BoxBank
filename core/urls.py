@@ -8,7 +8,8 @@ urlpatterns = [
     path('conta/', include('cliente.urls')),
     path('transacoes/', include('transacoes.urls')),
     path('extrato/', include('extrato.urls')),
-    path('operacoes/', include('operacoes.urls'))
+    path('operacoes/', include('operacoes.urls')),
+    path('credit_card/', include('cartaocredito.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
