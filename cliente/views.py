@@ -14,12 +14,12 @@ def home(request):
     conta = Conta.objects.get(cliente=id_user)
     user = Cliente.objects.get(id=id_user)
     #if not credit_card:
-    return render(request, 'home.html', {'conta': conta, 'user': user})
+    return render(request, 'cliente/home.html', {'conta': conta, 'user': user})
     #return render(request, 'home.html', {'conta': conta, 'user': user, 'credit_card': credit_card})
 
 def login(request):
     if request.method == 'GET':
-        return render(request, 'login.html')
+        return render(request, 'cliente/login.html')
     elif request.method == 'POST':
         username = request.POST.get('username')
         senha = request.POST.get('senha')
@@ -37,7 +37,7 @@ def logout(request):
 
 def cadastrar_conta(request):
     if request.method == 'GET':
-        return render(request, 'criar_conta.html')
+        return render(request, 'cliente/criar_conta.html')
     
     elif request.method == 'POST':
         nome = request.POST.get('nome')
