@@ -86,6 +86,13 @@ DATABASES = {
     }
 }
 
+# Users Auth
+AUTH_USER_MODEL = 'cliente.Cliente'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    # Add other backends if you have any
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -133,5 +140,3 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Users Auth
-AUTH_USER_MODEL = 'cliente.Cliente'

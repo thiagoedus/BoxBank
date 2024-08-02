@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
 from .models import Cliente, Endereco, Conta
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login
 from django.contrib import auth
 from . import generators
 from django.utils import timezone
@@ -17,18 +18,20 @@ def home(request):
     return render(request, 'cliente/home.html', {'conta': conta, 'user': user})
     #return render(request, 'home.html', {'conta': conta, 'user': user, 'credit_card': credit_card})
 
-def login(request):
+def login_cliente(request):
     if request.method == 'GET':
         return render(request, 'cliente/login.html')
     elif request.method == 'POST':
         username = request.POST.get('username')
         senha = request.POST.get('senha')
 
-        user = auth.authenticate(request, username=username, password=senha)
+        user = authenticate(username=username, password=senha)
 
+        if user is not None:
+            auth.login(request, user)
+            return redirect(reverse('home'))
         
-        auth.login(request, user)
-        return redirect(reverse('home'))
+        return HttpResponse("Usuário inválido")
 
 def logout(request):
     if request.session:
@@ -56,7 +59,7 @@ def cadastrar_conta(request):
         estado = request.POST.get('estado')
 
 
-        cliente = Cliente(
+        cliente = Cliente.objects.create_user(
             username=username,
             nome_completo = nome,
             cpf = cpf,
@@ -65,8 +68,6 @@ def cadastrar_conta(request):
             email = email,
             password = password
         )
-
-        cliente.save()
 
     
         endereco = Endereco(
