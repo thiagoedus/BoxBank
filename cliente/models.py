@@ -2,17 +2,18 @@ from django.db import models
 from datetime import datetime
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
+from . import choices
 
 class Cliente(AbstractUser):
-    nome_completo = models.CharField(max_length=60, null=True, blank=True)
-    cpf = models.CharField(max_length=11, unique=True, null=True, blank=True)
-    telefone = models.CharField(max_length=11, null=True, blank=True)
-    rg = models.CharField(max_length=10, unique=True, null=True, blank=True)
-    email = models.CharField(max_length=60, unique=True, null=True, blank=True)
+    nome_completo = models.CharField(max_length=60)
+    cpf = models.CharField(max_length=11, unique=True)
+    telefone = models.CharField(max_length=11)
+    rg = models.CharField(max_length=10, unique=True)
+    email = models.CharField(max_length=60, unique=True)
 
 
     def __str__(self):
-        return str(self.nome_completo)
+        return str(self.username)
     
     @property
     def get_id(self):
@@ -42,8 +43,8 @@ class Conta(models.Model):
     agencia = models.CharField(max_length=6)
     banco = models.CharField(default='0934', max_length=4)
     saldo = models.FloatField(default=0)
-    data_abertura = models.DateField(default=datetime.now())
-    status_conta = models.CharField(max_length=12)
+    data_abertura = models.DateTimeField(auto_now_add=True)
+    status_conta = models.CharField(max_length=20, choices=choices.estados_conta)
     chave_pix = models.CharField(max_length=50, unique=True, null=True, blank=True)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, null=True)
 

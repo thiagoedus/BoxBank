@@ -6,13 +6,13 @@ class Boleto(models.Model):
     codigo = models.CharField(max_length=48, unique=True)
     beneficiario = models.ForeignKey(Cliente, related_name='beneficiario', on_delete=models.DO_NOTHING)
     conta_beneficiaria = models.ForeignKey(Conta, related_name='conta_beneficiario', on_delete=models.DO_NOTHING)
-    data_e_hora_processamento = models.DateTimeField(default=timezone.now)
+    data_e_hora_processamento = models.DateTimeField(auto_now_add=True)
     vencimento = models.DateField()
     valor = models.FloatField(default=0)
     situacao = models.CharField(max_length=12)
     pagador = models.ForeignKey(Cliente, related_name='pagador', on_delete=models.DO_NOTHING, null=True, blank=True)
     conta_pagador = models.ForeignKey(Conta, related_name='conta_pagador', on_delete=models.DO_NOTHING, null=True, blank=True)
-    data_e_hora_pagamento = models.DateTimeField(null=True, blank=True)
+    data_e_hora_pagamento = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.codigo

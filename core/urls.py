@@ -6,9 +6,8 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('conta/', include('cliente.urls')),
-    path('transacoes/', include('transacoes.urls')),
-    path('extrato/', include('extrato.urls')),
     path('operacoes/', include('operacoes.urls')),
+    path('transacoes', include('transacoes.urls')),
     path('credit_card/', include('cartaocredito.urls')),
 ]
 
