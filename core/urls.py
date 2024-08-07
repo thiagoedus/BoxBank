@@ -2,9 +2,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
+from .api import api
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', api.urls),
     path('conta/', include('cliente.urls')),
     path('operacoes/', include('operacoes.urls')),
     path('transacoes', include('transacoes.urls')),
