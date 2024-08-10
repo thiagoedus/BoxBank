@@ -1,12 +1,42 @@
 {% extends 'bases/base.html' %}
+{% load static %}
 
-{% block 'body' %}
-    <div>
-        <form method="POST"> {% csrf_token %}
-            <h1>Transferência PIX</h1> <br>
-            <span>Chave PIX</span><input class="form-control" type="text" name="chave_pix_beneficiario" id=""><br>
-            <span>Valor</span><input class="form-control" type="text" name="valor_pix" id=""><br><br>
-            <input style="background-color: #189FD9;" class="btn btn-success container" type="submit" value="Transferir">
-        </form>
-    </div>
+
+{% block 'head' %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'cliente/css/cliente.css' %}">
 {% endblock %}
+ 
+{% block 'body' %}
+    
+    <button style="background-color: #189FD9;" class="btn btn-success container" id="open-modal" type="button" id="open-modal">Transferir</button>
+    <div id="fade" class="hide"></div>
+    <div id="modal" class="hide">
+      <div class="modal-headers">
+        <h2>Digite o valor da transferência</h2>
+        <button id="close-modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group">
+            <label for="email">R$
+                <input type="number" name="email" id="email" placeholder="0,00">
+              </label>
+        </div>
+
+
+        </div>
+
+        <div class="buttons-options">
+            <button class="button-cancel">Cancelar</button>
+            <button id="login-button"><i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
+        </div>
+        
+
+      </div>
+    </div>
+
+    <script src="{% static 'cliente/js/cliente-modal.js'%}"></script>
+
+{% endblock %}
+
+

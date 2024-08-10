@@ -4,7 +4,6 @@ from cliente.models import Cliente, Conta, Endereco
 from datetime import datetime
 from .models import Boleto
 from django.http import HttpResponse
-import pdfkit
 
 def boleto(request):
     return render(request, 'boleto.html')
@@ -33,7 +32,7 @@ def gerar_boleto(request):
 
         boleto.save()
 
-        endereco_beneficiario = Endereco.objects.get(cliente=request.user.get_id)
+        endereco_beneficiario = Endereco.objects.get(cliente=request.user.id)
 
         return render(request, 'boleto.html', {'beneficiario': beneficiario, 'conta_beneficiario': conta_beneficiario, 'boleto': boleto, 'endereco_beneficiario': endereco_beneficiario})
     

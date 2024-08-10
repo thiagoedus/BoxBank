@@ -9,7 +9,7 @@ urlpatterns = [
     path('api/', api.urls),
     path('conta/', include('cliente.urls')),
     path('operacoes/', include('operacoes.urls')),
-    path('transacoes', include('transacoes.urls')),
+    path('transacoes/', include('transacoes.urls')),
     path('credit_card/', include('cartaocredito.urls')),
 ]
 
