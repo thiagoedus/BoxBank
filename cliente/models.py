@@ -3,6 +3,7 @@ from datetime import datetime
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
 from . import choices
+from decimal import Decimal
 
 class Cliente(AbstractUser):
     nome_completo = models.CharField(max_length=60)
@@ -42,7 +43,7 @@ class Conta(models.Model):
     numero_conta = models.CharField(max_length=12, unique=True)
     agencia = models.CharField(max_length=6)
     banco = models.CharField(default='0934', max_length=4)
-    saldo = models.FloatField(default=0)
+    saldo = models.DecimalField(max_digits=15, decimal_places=2, default=Decimal(0.00))
     data_abertura = models.DateTimeField(auto_now_add=True)
     status_conta = models.CharField(max_length=20, choices=choices.estados_conta)
     chave_pix = models.CharField(max_length=50, unique=True, null=True, blank=True)

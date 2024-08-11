@@ -1,19 +1,152 @@
-{% extends 'bases/base.html'%}
-{% load static %}
+{% load static %} {% block 'head' %}
+<link rel="stylesheet" href="{% static 'cliente/css/cliente.css' %}" />
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    box-sizing: border-box;
+  }
 
-{% block 'head' %}
-<link rel="stylesheet" href="{% static 'cliente/css/cliente.css' %}">
-{% endblock %}
+  body {
+    background-color: #1c1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
 
-{% block 'body' %}
-        <form action="{% url 'login' %}" method="POST"> {% csrf_token %}
+  .container {
+    width: 450px;
+    padding: 30px;
+    background: #3e3d3d;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .container .input-data {
+    height: 40px;
+    width: 100%;
+    position: relative;
+    border-bottom: 40px;
+    margin-bottom: 30px;
+  }
+
+  .container .input-data input {
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 17px;
+    border-bottom: 2px solid #616060;
+    background: transparent;
+    color: #fff;
+  }
+
+  .input-data input:focus ~ label {
+    transform: translateY(-22px);
+    font-size: 13px;
+  }
+
+  .container .input-data label {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    color: silver;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    font-size: 17px;
+  }
+
+  .img-center {
+    position: fixed;
+
+    top: 80px;
+  }
+
+  .img-center img {
+    width: 400px;
+  }
+
+  .text-card {
+    font-size: 23px;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+
+  .button-continue {
+    background-color: #189fd9;
+    border: none;
+    border-radius: 30px;
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+  }
+
+  .button-continue:hover {
+    background-color: #177ba6;
+    cursor: pointer;
+  }
+</style>
+{% endblock %} {% block 'body' %}
+
+<div class="img-center">
+  <img src="{% static 'global/img/logo_boleto.png'%}" alt="Box Bank" />
+</div>
+
+<div class="container">
+  <div class="text-card">
+    Abra sua conta e desfrute da sua liberdade financeira
+  </div>
+
+  <form action="{% url 'login' %}" method="POST">{% csrf_token %}
+  <div class="input-data">
+    <input type="text"  name="username" required/>
+    <label>Usuario</label>
+  </div>
+
+  <div class="input-data">
+    <input type="password" name="senha" required/>
+    <label>Senha</label>
+  </div>
+
+  <div class="buttons-options">
+    <input type="submit" class="button-continue" value="Entrar">
+  </div>
+
+  <label for="">Não tem um conta? </label>
+  <label for=""><a href="{% url 'cadastrar_conta' %}">Abra sua conta</a></label>
+</form>
+</div>
+
+<!-- <div class="row">
+        <div class="col">
+        <form action="{% url 'cadastrar_conta' %}" method="POST"> {% csrf_token %}
             <div class="form-group">
-                <span>Nome de Usuario </span><input class="form-control input-form" type="text" name="username" id="" placeholder="Digite o seu nome de usuário"><br>
-                <span>Senha </span><input class="form-control input-form" type="text" name="senha" id="" placeholder="Digite a sua senha"><br><br>
-            <input class="btn btn-principal" type="submit" value="Entrar">
+                <span>Nome </span><input class="form-control input-form" type="text" name="nome" id=""><br>
+                <span>CPF </span><input class="form-control input-form" type="text" name="cpf" id=""><br>
+                <span>Telefone </span><input class="form-control input-form" type="text" name="telefone" id=""><br>
+                <span>RG </span><input class="form-control input-form" type="text" name="rg" id=""><br>
+                <span>Email </span><input class="form-control input-form" type="text" name="email" id=""><br>
+                <span>Data de Nascimento </span><input class="form-control input-form" type="text" name="data_nascimento" id=""><br>
+                <span>usernmae</span><input class="form-control input-form" type="text" name="username" id=""><br>
+                <span>senha </span><input class="form-control input-form" type="text" name="senha" id=""><br>
+
             </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <span>Logradouro </span><input class="form-control input-form" type="text" name="logradouro" id=""><br>
+                <span>Número </span><input class="form-control input-form" type="number" name="numero" id=""><br>
+                <span>Bairro </span><input class="form-control input-form" type="text" name="bairro" id=""><br>
+                <span>Cidade </span><input class="form-control input-form" type="text" name="cidade" id=""><br>
+                <span>Estado </span><input class="form-control input-form" type="text" name="estado" id=""><br>
+            </div>
+        </div>
+    </div>
+
+
+            <input class="btn btn-principal" type="submit" value="Cadastrar">
+        
         </form>
-        <a class="btn btn-abrir-conta" href="{% url 'cadastrar_conta' %}">Abra sua Conta</a>
     <br>
-    <br>
+    <br> -->
 {% endblock %}
