@@ -1,147 +1,293 @@
-{% load static %} {% block 'head' %}
-<link rel="stylesheet" href="{% static 'cliente/css/cliente.css' %}" />
-<style>
-  * {
-    padding: 0;
-    margin: 0;
-    outline: none;
-    box-sizing: border-box;
-  }
+<!DOCTYPE html>
+<html lang="en">
 
-  body {
-    background-color: #1c1a1a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-  }
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+  <title>Registraion Form</title>
 
-  .container {
-    width: 450px;
-    padding: 30px;
-    background: #3e3d3d;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  }
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
 
-  .container .input-data {
-    height: 40px;
-    width: 100%;
-    position: relative;
-    border-bottom: 40px;
-    margin-bottom: 30px;
-  }
+    body {
+      margin: 0;
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+      background-color: #1c1a1a;
+    }
 
-  .container .input-data input {
-    height: 100%;
-    width: 100%;
-    border: none;
-    font-size: 17px;
-    border-bottom: 2px solid #616060;
-    background: transparent;
-    color: #fff;
-  }
+    /* Global Stylings */
 
-  .input-data input:focus ~ label {
-    transform: translateY(-22px);
-    font-size: 13px;
-  }
+    h1 {
+      color: #fff;
+    }
 
-  .container .input-data label {
-    position: absolute;
-    bottom: 10px;
-    left: 0;
-    color: silver;
-    pointer-events: none;
-    transition: all 0.3s ease;
-    font-size: 17px;
-  }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
 
-  .img-center {
-    position: fixed;
+    input {
+      display: block;
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 0.25rem;
+    }
 
-    top: 80px;
-  }
+    .width-50 {
+      width: 50%;
+    }
 
-  .img-center img {
-    width: 400px;
-  }
+    .ml-auto {
+      margin-left: auto;
+    }
 
-  .text-card {
-    font-size: 23px;
-    color: #fff;
-    margin-bottom: 20px;
-  }
+    .text-center {
+      text-align: center;
+    }
 
-  .button-continue {
-    background-color: #189fd9;
-    border: none;
-    border-radius: 30px;
-    width: 100%;
-    height: 40px;
-    margin-top: 10px;
-  }
+    /* Progressbar */
 
-  .button-continue:hover {
-    background-color: #177ba6;
-    cursor: pointer;
-  }
-</style>
-{% endblock %} {% block 'body' %}
+    .progressbar {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      counter-reset: step;
+      margin: 3rem 0;
+    }
 
-<div class="img-center">
-  <img src="{% static 'global/img/logo_boleto.png'%}" alt="Box Bank" />
-</div>
+    .progressbar::before,
+    .progress {
+      content: "";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 4px;
+      width: 100%;
+      background-color: #dcdcdc;
+      z-index: -1;
+    }
 
-<div class="container">
-  <div class="text-card">
-    Abra sua conta e desfrute da sua liberdade financeira
-  </div>
+    .progress {
+      background-color: #169DD8;
+      width: 0%;
+      transition: 0.3s;
+    }
 
-  <div class="input-data">
-    <input type="text" />
-    <label>Nome Completo</label>
-  </div>
+    .progress-step {
+      width: 2.1875rem;
+      height: 2.1875rem;
+      background-color: #dcdcdc;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-  <div class="input-data">
-    <input type="text" />
-    <label>CPF</label>
-  </div>
+    .progress-step-active {
+      background-color: #169DD8;
+      color: #fff;
+    }
 
-  <div class="buttons-options">
-    <button class="button-continue">Continuar</button>
-  </div>
-</div>
 
-<!-- <div class="row">
-        <div class="col">
-        <form action="{% url 'cadastrar_conta' %}" method="POST"> {% csrf_token %}
-            <div class="form-group">
-                <span>Nome </span><input class="form-control input-form" type="text" name="nome" id=""><br>
-                <span>CPF </span><input class="form-control input-form" type="text" name="cpf" id=""><br>
-                <span>Telefone </span><input class="form-control input-form" type="text" name="telefone" id=""><br>
-                <span>RG </span><input class="form-control input-form" type="text" name="rg" id=""><br>
-                <span>Email </span><input class="form-control input-form" type="text" name="email" id=""><br>
-                <span>Data de Nascimento </span><input class="form-control input-form" type="text" name="data_nascimento" id=""><br>
-                <span>usernmae</span><input class="form-control input-form" type="text" name="username" id=""><br>
-                <span>senha </span><input class="form-control input-form" type="text" name="senha" id=""><br>
+    .progress-step::after {
+      content: attr(data-title);
+      position: absolute;
+      top: calc(100% + 0.75rem);
+      font-size: 0.85rem;
+      color: #666;
+    }
 
-            </div>
-        </div>
-        <div class="col">
-            <div class="form-group">
-                <span>Logradouro </span><input class="form-control input-form" type="text" name="logradouro" id=""><br>
-                <span>Número </span><input class="form-control input-form" type="number" name="numero" id=""><br>
-                <span>Bairro </span><input class="form-control input-form" type="text" name="bairro" id=""><br>
-                <span>Cidade </span><input class="form-control input-form" type="text" name="cidade" id=""><br>
-                <span>Estado </span><input class="form-control input-form" type="text" name="estado" id=""><br>
-            </div>
-        </div>
+    .progress-step::before {
+      counter-increment: step;
+      content: counter(step);
+
+    }
+
+    /* Form */
+    .form {
+      width: clamp(320px, 30%, 430px);
+      margin: 0 auto;
+      border: 1px solid #ccc;
+      border-radius: 0.35rem;
+      padding: 1.5rem;
+      background-color: #272525;
+      z-index: 1;
+    }
+
+    .form-step {
+      display: none;
+      transform-origin: top;
+      animation: animate 0.5s;
+    }
+
+    .form-step-active {
+      display: block;
+    }
+
+    .input-group {
+      margin: 2rem 0;
+    }
+
+    /* Buttons */
+
+    .btns-group {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .btn {
+      padding: 0.75rem;
+      display: block;
+      text-decoration: none;
+      background-color: #169DD8;
+      color: #f3f3f3;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.3s;
+      border-radius: 0.25rem;
+    }
+
+    .btn:hover {
+      box-shadow: 0 0 0 2px #fff, 0 0 0 3px #169DD8;
+    }
+  </style>
+
+</head>
+
+<body>
+  <form action="#" class="form">
+    <h1 class="">Abra sua conta e conheça a liberdade
+      financeira
+    </h1>
+    <!-- Progress bar -->
+    <div class="progressbar">
+      <div class="progress" id="progress"></div>
+
+      <div class="progress-step progress-step-active" data-title="Intro"></div>
+      <div class="progress-step" data-title="Contact"></div>
+      <div class="progress-step" data-title="ID"></div>
+      <div class="progress-step" data-title="Password"></div>
     </div>
 
+    <!-- Steps -->
+    <div class="form-step form-step-active">
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" />
+      </div>
+      <div class="input-group">
+        <label for="position">Position</label>
+        <input type="text" name="position" id="position" />
+      </div>
+      <div class="">
+        <a href="#" class="btn btn-next width-50 ml-auto">Next</a>
+      </div>
+    </div>
+    <div class="form-step">
+      <div class="input-group">
+        <label for="phone">Phone</label>
+        <input type="text" name="phone" id="phone" />
+      </div>
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" />
+      </div>
+      <div class="btns-group">
+        <a href="#" class="btn btn-prev">Previous</a>
+        <a href="#" class="btn btn-next">Next</a>
+      </div>
+    </div>
+    <div class="form-step">
+      <div class="input-group">
+        <label for="dob">Date of Birth</label>
+        <input type="date" name="dob" id="dob" />
+      </div>
+      <div class="input-group">
+        <label for="ID">National ID</label>
+        <input type="number" name="ID" id="ID" />
+      </div>
+      <div class="btns-group">
+        <a href="#" class="btn btn-prev">Previous</a>
+        <a href="#" class="btn btn-next">Next</a>
+      </div>
+    </div>
+    <div class="form-step">
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" />
+      </div>
+      <div class="input-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" name="confirmPassword" id="confirmPassword" />
+      </div>
+      <div class="btns-group">
+        <a href="#" class="btn btn-prev">Previous</a>
+        <input type="submit" value="Submit" class="btn" />
+      </div>
+    </div>
+  </form>
 
-            <input class="btn btn-principal" type="submit" value="Cadastrar">
-        
-        </form>
-    <br>
-    <br> -->
-{% endblock %}
+  <script>
+    const prevBtns = document.querySelectorAll('.btn-prev');
+    const nextBtns = document.querySelectorAll('.btn-next');
+    const progress = document.getElementById("progress");
+    const formSteps = document.querySelectorAll(".form-step");
+    const progressSteps = document.querySelectorAll('.progress-step')
+
+    let formStepsNum = 0;
+
+    nextBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        formStepsNum++;
+        updateFormSteps();
+        updateProgressBar();
+      });
+    });
+
+    prevBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        formStepsNum--;
+        updateFormSteps();
+        updateProgressBar()
+      });
+    });
+
+    function updateFormSteps() {
+
+      formSteps.forEach(formStep => {
+        formStep.classList.contains("form-step-active") &&
+          formStep.classList.remove("form-step-active");
+      })
+
+      formSteps[formStepsNum].classList.add("form-step-active")
+    }
+
+    function updateProgressBar() {
+      progressSteps.forEach((progressStep, idx) => {
+        if (idx < formStepsNum + 1) {
+          progressStep.classList.add('progress-step-active');
+        } else {
+          progressStep.classList.remove('progress-step-active');
+        }
+      })
+
+      const progressActive = document.querySelectorAll('.progress-step-active')
+
+      progress.style.width = ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + "%";
+    }
+  </script>
+</body>
+
+</html>
