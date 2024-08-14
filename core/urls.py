@@ -7,6 +7,7 @@ from .api import api
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', api.urls),
+    path('', include('cliente.urls')),
     path('conta/', include('cliente.urls')),
     path('operacoes/', include('operacoes.urls')),
     path('transacoes/', include('transacoes.urls')),

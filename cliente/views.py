@@ -8,6 +8,8 @@ from . import generators
 from django.utils import timezone
 from django.shortcuts import get_object_or_404
 
+def redirect_func(request):
+    return redirect(reverse('login'))
 
 @login_required(login_url="/conta/login/")
 def home(request):
@@ -19,6 +21,10 @@ def home(request):
     #return render(request, 'home.html', {'conta': conta, 'user': user, 'credit_card': credit_card})
 
 def login_cliente(request):
+
+    if request.user.is_authenticated:
+        return redirect(reverse('home'))
+
     if request.method == 'GET':
         return render(request, 'cliente/login.html')
     elif request.method == 'POST':
