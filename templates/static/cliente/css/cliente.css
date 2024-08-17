@@ -64,7 +64,7 @@ button:hover {
   min-width: 300px;
   background-color: #1C1A1A;
   padding: 1.2rem;
-  border-radius: 30px;
+  border-radius: 15px;
   z-index: 10;
 }
 

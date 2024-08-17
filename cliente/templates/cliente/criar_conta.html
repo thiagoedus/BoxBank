@@ -118,12 +118,43 @@
     .form {
       width: clamp(320px, 30%, 430px);
       margin: 0 auto;
-      border: 1px solid #ccc;
-      border-radius: 0.35rem;
       padding: 1.5rem;
       background-color: #272525;
       z-index: 1;
     }
+
+    .form-step .input-group {
+      height: 40px;
+      width: 100%;
+      position: relative;
+      border-bottom: 40px;
+      margin-bottom: 30px;
+    }
+
+    .form-step .input-group input {
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 17px;
+    border-bottom: 2px solid #616060;
+    background: transparent;
+    color: #fff;
+  }
+
+  .input-group input:focus ~ label {
+    transform: translateY(-22px);
+    font-size: 13px;
+  }
+
+  .form-step .input-group label {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    color: silver;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    font-size: 17px;
+  }
 
     .form-step {
       display: none;
@@ -133,10 +164,6 @@
 
     .form-step-active {
       display: block;
-    }
-
-    .input-group {
-      margin: 2rem 0;
     }
 
     /* Buttons */
@@ -168,7 +195,7 @@
 
 <body>
   <form action="#" class="form">
-    <h1 class="">Abra sua conta e conheça a liberdade
+    <h1 class="">Abra sua conta e conquiste a sua liberdade
       financeira
     </h1>
     <!-- Progress bar -->

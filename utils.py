@@ -1,4 +1,4 @@
-from weasyprint import HTML
+
 
 teste_boleto = """
 <html charset="UTF-8">
@@ -480,8 +480,8 @@ teste_boleto = """
 
     </html>"""
 
-def emite_boleto(boleto):
-    htmldoc = HTML(string=boleto, base_url="")
-    return htmldoc.write_pdf()
-
-emite_boleto(teste_boleto)
+def criptografa_cpf(cpf: str):
+    cpf = cpf.replace(".", "").replace("-", "")
+    cpf_formatado = "***"
+    cpf_formatado += cpf[3:6] + "." + cpf[6:9] +"-**"
+    return cpf_formatado
