@@ -126,3 +126,4 @@ gunicorn-error-log
 db copy.sqlite3
 fontawesome
 db.sqlite3
+db.sqlite

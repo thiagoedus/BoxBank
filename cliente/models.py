@@ -53,14 +53,14 @@ class Conta(models.Model):
         return str(self.numero_conta)
     
     def saque(self, valor):
-        if self.saldo < float(valor):
+        if self.saldo < Decimal(valor):
             return
         else:
-            self.saldo -= float(valor)
+            self.saldo -= Decimal(valor)
             return valor
         
     def deposito(self, valor):
-        if float(valor) > 15000:
+        if Decimal(valor) > 15000:
             return
-        self.saldo += float(valor)
+        self.saldo += Decimal(valor)
         return valor
