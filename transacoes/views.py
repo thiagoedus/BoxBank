@@ -5,6 +5,9 @@ from django.http import HttpResponse
 from operacoes.models import Boleto
 from django.utils import timezone
 from django.db import transaction as django_transaction
+from django.shortcuts import get_object_or_404
+
+
 
 # def realizar_transferencia(request):
 
@@ -32,7 +35,9 @@ from django.db import transaction as django_transaction
 
 def tranferencia_pix(request):
     if request.method == 'GET':
-        return render(request, 'realizar_pix.html')
+        conta = Conta.objects.get(cliente__id=request.user.id)        
+        print(conta.chave_pix)
+        return render(request, 'realizar_pix.html', {'conta': conta})
     elif request.method == 'POST':
         chave_pix = request.POST.get('chave_pix_beneficiario')
         valor = request.POST.get('valor_pix')

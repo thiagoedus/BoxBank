@@ -5,10 +5,20 @@
 {% block 'head' %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="{% static 'cliente/css/cliente.css' %}">
+    <link rel="stylesheet" href="{% static 'cliente/css/home.css' %}">
 {% endblock %}
- 
+
 {% block 'body' %}
-    
+
+<div class="card">
+  <span class="fonte-destaque">Área PIX</span>
+  <span class="font-light negativo">Chaves cadastradas</span>
+  <hr class="hr-borda">
+  <button style="background-color: #189FD9;" class="btn btn-success container" type="button">Adicionar chave +</button>
+
+</div>
+
+    <br>
     <button style="background-color: #189FD9;" class="btn btn-success container" id="open-modal" type="button" id="open-modal">Transferir</button>
     <div id="fade" class="hide"></div>
     <div id="modal" class="hide">

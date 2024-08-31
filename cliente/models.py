@@ -64,3 +64,15 @@ class Conta(models.Model):
             return
         self.saldo += Decimal(valor)
         return valor
+
+
+class ChavePix(models.Model):
+    TIPO_CHAVE_PIX_CHOICES = (
+        ("CPF", "CPF"),
+        ("TEL", "TELEFONE"),
+        ("E", "EMAIL"),
+        ("CA", "CHAVE ALEATÓRIA"),
+    )
+    chave = models.CharField(max_length=50)
+    tipo = models.CharField(max_length=30, choices=TIPO_CHAVE_PIX_CHOICES)
+    conta = models.ForeignKey(Cliente, on_delete=models.CASCADE)
