@@ -20,10 +20,34 @@
 
     <br>
     <button style="background-color: #189FD9;" class="btn btn-success container" id="open-modal" type="button" id="open-modal">Transferir</button>
-    <div id="fade" class="hide"></div>
+    <!-- <div id="modal" class="hide"></div> -->
     <div id="modal" class="hide">
       <div class="modal-headers">
         <h2>Digite o valor da transferência</h2>
+        <button id="close-modal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group">
+            <label for="email">R$
+                <input type="number" name="email" id="email" placeholder="0,00">
+              </label>
+        </div>
+
+
+        </div>
+
+        <div class="buttons-options">
+            <button class="button-cancel">Cancelar</button>
+            <button id="login-button"><i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
+        </div>
+        
+
+      </div>
+    </div>
+
+    <div id="modal" class="hide">
+      <div class="modal-headers">
+        <h2>Escolha uma chave PIX</h2>
         <button id="close-modal"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body">
