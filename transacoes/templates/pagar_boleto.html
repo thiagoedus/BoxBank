@@ -1,11 +1,21 @@
-{% extends 'bases/base.html' %}
+{% extends 'bases/base.html' %} {% block 'body' %}
+<div>
+  <form action="{% url 'pagar_boleto' %}" method="POST">
+    {% csrf_token %}
+    <h1>Digite o código de barras</h1>
+    <br />
 
-{% block 'body' %}
-    <div>
-        <form action="{% url 'pagar_boleto' %}" method="POST"> {% csrf_token %}
-            <h1>Digite o código de barras</h1><br>
-            <input class="form-control" type="text" name="codigo_boleto" id=""><br>
-            <input style="background-color: #189FD9;" class="btn btn-success container" type="submit" value="Pagar">
-        </form>
-    </div>
+    {% if messages %} {% for message in messages %}
+    <div class="alert {{ message.tags }}">{{ message }}</div>
+    {% endfor %} {% endif %}
+
+    <input class="form-control" type="text" name="codigo_boleto" id="" /><br />
+    <input
+      style="background-color: #189fd9"
+      class="btn btn-success container"
+      type="submit"
+      value="Pagar"
+    />
+  </form>
+</div>
 {% endblock %}

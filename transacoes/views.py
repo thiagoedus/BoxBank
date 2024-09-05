@@ -6,6 +6,7 @@ from operacoes.models import Boleto
 from django.utils import timezone
 from django.db import transaction as django_transaction
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
 
 
 
@@ -73,7 +74,11 @@ def pagar_boleto(request):
         return render(request, 'pagar_boleto.html')
     elif request.method == 'POST':
         codigo = request.POST.get('codigo_boleto')
-        boleto = Boleto.objects.get(codigo=codigo)
+        boleto = Boleto.objects.filter(codigo=codigo).first()
+        if not boleto:
+            print(boleto)
+            messages.add_message(request, messages.ERROR, 'Boleto não identificado')
+            return render(request, 'pagar_boleto.html')
         return render(request, 'confirmar_boleto.html', {'boleto': boleto})
 
 
