@@ -68,7 +68,7 @@ def realizar_emprestimo(request):
     if request.method == 'GET':
         return render(request, 'emprestimo.html')
 
-
+# TODO transferir para API
 def pagar_boleto(request):
     if request.method == 'GET':
         return render(request, 'pagar_boleto.html')
