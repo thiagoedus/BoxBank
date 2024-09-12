@@ -14,7 +14,7 @@ const exibe_dados = (dados) => {
 }
 
 //TODO Escolher qual modal virá para esta função
-const toggleModal = () => {
+function toggleModal() {
   fetch("http://127.0.0.1:8000/api/operacoes/" + codigo_boleto.value, {
     method: "GET",
   })
@@ -25,14 +25,24 @@ const toggleModal = () => {
       return response.json();
     })
     .then((data) => {
+      modal.classList.toggle("hide");
+      fade.classList.toggle("hide");
+    
       console.log(data)
       exibe_dados(data);
     })
-    .catch((error) => {
-      console.error("Houve um problema com a requisição:", error);
+    .catch(error => {
+      // Verifica se o erro é devido a um 404
+      if (error.message.includes('404')) {
+        alert('Erro 404: Recurso não encontrado.'); // Exibe uma mensagem para o usuário
+      } else {
+        alert('Ocorreu um erro ao buscar os dados: ' + error.message); // Exibe outra mensagem genérica
+      }
+      console.error('Erro capturado:', error); // Também exibe o erro no console (para depuração)
     });
-  modal.classList.toggle("hide");
-  fade.classList.toggle("hide");
+
+    // console.log(error)
+
 };
 
 [openModalButton, closeModalButton, fade].forEach((el) => {
