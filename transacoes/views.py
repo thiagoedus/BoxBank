@@ -68,19 +68,6 @@ def realizar_emprestimo(request):
     if request.method == 'GET':
         return render(request, 'emprestimo.html')
 
-# TODO transferir para API
-def pagar_boleto(request):
-    if request.method == 'GET':
-        return render(request, 'pagar_boleto.html')
-    elif request.method == 'POST':
-        codigo = request.POST.get('codigo_boleto')
-        boleto = Boleto.objects.filter(codigo=codigo).first()
-        if not boleto:
-            print(boleto)
-            messages.add_message(request, messages.ERROR, 'Boleto não identificado')
-            return render(request, 'pagar_boleto.html')
-        return render(request, 'confirmar_boleto.html', {'boleto': boleto})
-
 
 def confirmar_boleto(request, codigo_boleto):
     boleto = Boleto.objects.get(codigo=codigo_boleto)
@@ -111,14 +98,5 @@ def confirmar_boleto(request, codigo_boleto):
     return HttpResponse('foi')
 
     #TODO Emitir comprovante
-
-
-def confirmar_transferencia(request):
-    conta_origem = Conta.objects.get(id=request.user)
-    conta_destino = Conta.objects.get(id=id)
-    valor = request.POST.get('valor')
-    conta_origem.saque(valor)
-    conta_origem.deposito(valor)
-    return render(request, 'confirmar_transferencia.html')
 
     
