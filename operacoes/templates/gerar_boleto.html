@@ -1,11 +1,40 @@
 {% extends 'bases/base.html' %}
+{% load static %}
+
+{% block 'head' %}
+<link rel="stylesheet" href="{% static 'cliente/css/cliente.css' %}" />
+<link rel="stylesheet" href="{% static 'cliente/css/home.css' %}" />
+{% endblock %}
 
 {% block 'body' %}
-    <div>
-        <h1>Digite o valor a ser depositado</h1>
-        <form action="" method="POST"> {% csrf_token %} <br>
-            <input class="form-control" type="text" name="valor_boleto" id=""><br>
-            <input style="background-color: #189FD9;" class="btn btn-success container" type="submit" value="Gerar">
-        </form>
+<div>
+    <h1>Digite o valor a ser depositado</h1>
+    <input class="form-control" type="text" name="valor-boleto" id="valor-boleto"><br>
+    <button style="background-color: #189FD9;" class="btn btn-success container" type="button"
+        id="open-modal">Gerar</button>
+</div>
+
+<div id="fade" class="hide"></div>
+<div id="modal" class="hide">
+    <div class="modal-headers">
+        <h2>Depósito</h2>
+        <button id="close-modal"><i class="fa-solid fa-xmark"></i></button>
     </div>
+    <div class="modal-body">
+
+        <div class="dados_pagamento">
+            <span>Deseja gerar o boleto de R$</span><span id="valor-boleto-digitado"></span><br>
+        </div>
+
+        <div class="buttons-options">
+            <button class="button-cancel">Cancelar</button>
+            <button id="login-button"><i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
+        </div>
+
+
+    </div>
+</div>
+
+<script src="{% static 'operacoes/js/modal-deposito.js'%}"></script>
+
 {% endblock %}

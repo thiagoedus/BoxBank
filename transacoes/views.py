@@ -68,35 +68,16 @@ def realizar_emprestimo(request):
     if request.method == 'GET':
         return render(request, 'emprestimo.html')
 
-
-def confirmar_boleto(request, codigo_boleto):
-    boleto = Boleto.objects.get(codigo=codigo_boleto)
-    if boleto.get_situacao == 'PAGO':
-        return HttpResponse('O boleto não está aberto')
-    
-    pagador = Cliente.objects.get(id=request.user.get_id)
-    conta_pagador = Conta.objects.get(cliente_id=request.user.get_id)
-
-    conta_beneficiario = Conta.objects.get(id=boleto.conta_beneficiaria_id)
-
-    conta_pagador.saque(boleto.valor)
-    conta_beneficiario.deposito(boleto.valor)
-
-    conta_pagador.save()
-    conta_beneficiario.save()
-
-    print(pagador.id)
-    print(conta_pagador)
-
-    boleto.pagador = pagador
-    boleto.conta_pagador = conta_pagador
-    boleto.situacao = 'PAGO'
-
-    boleto.data_e_hora_pagamento = timezone.now()
-
-    boleto.save()
-    return HttpResponse('foi')
-
-    #TODO Emitir comprovante
+def pagar_boleto(request):
+    if request.method == 'GET':
+        return render(request, 'pagar_boleto.html')
+    elif request.method == 'POST':
+        codigo = request.POST.get('codigo_boleto')
+        boleto = Boleto.objects.filter(codigo=codigo).first()
+        if not boleto:
+            print(boleto)
+            messages.add_message(request, messages.ERROR, 'Boleto não identificado')
+            return render(request, 'pagar_boleto.html')
+        return render(request, 'confirmar_boleto.html', {'boleto': boleto})
 
     
