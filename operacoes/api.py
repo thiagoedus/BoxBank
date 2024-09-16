@@ -13,6 +13,9 @@ def get_cliente_for_pix(request, codigo_boleto: str):
                  conta_beneficiaria.cliente.nome_completo}
     return response
 
+#operacoes_router.post
+#def pagamento_boleto
+
 # Valor
 # Pagador
 # Agencia
