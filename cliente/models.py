@@ -47,6 +47,8 @@ class Conta(models.Model):
     data_abertura = models.DateTimeField(auto_now_add=True)
     status_conta = models.CharField(max_length=20, choices=choices.estados_conta)
     chave_pix = models.CharField(max_length=50, unique=True, null=True, blank=True)
+    # TODO remover null e blank
+    senha_transacao = models.CharField(max_length=4, null=True, blank=True)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
