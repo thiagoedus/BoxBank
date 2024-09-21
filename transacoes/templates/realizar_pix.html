@@ -23,52 +23,54 @@
     <!-- <div id="modal" class="hide"></div> -->
     <div id="fade" class="hide"></div>
     <div id="modal" class="hide">
-      <div class="modal-headers">
-        <h2>Digite o valor da transferência</h2>
-        <button id="close-modal"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-all modal-step-active">
+        <div class="modal-headers">
+          <h2>Digite o valor da transferência</h2>
+          <button id="close-modal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body">
+          <div class="input-group">
+              <label for="">R$
+                  <input type="number" name="email" id="email" placeholder="0,00">
+                </label>
+          </div>
+
+
+          </div>
+
+          <div class="buttons-options">
+              <button class="button-cancel">Cancelar</button>
+              <button style="color: #fff;" class="button-next" id="login-button">Continuar</button>
+          </div>
+
       </div>
-      <div class="modal-body">
-        <div class="input-group">
-            <label for="email">R$
-                <input type="number" name="email" id="email" placeholder="0,00">
-              </label>
+
+      <div class="modal-all ">
+        <div class="modal-headers">
+          <button style="margin-top: 5px; margin-right: 3px;" class="button-prev"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i></button>
+          <h2>Digite uma chave PIX</h2>
+          <button style="background: none;" id="close-modal"><i class="fa-solid fa-xmark"></i></button>
         </div>
+        <div class="modal-body">
+          <div class="input-group">
+              <label for="">
+                  <input type="text" name="chave-pix" id="chave-pix" placeholder="Informe a chave PIX">
+                </label>
+          </div>
 
 
-        </div>
+          </div>
 
-        <div class="buttons-options">
-            <button class="button-cancel">Cancelar</button>
-            <button id="login-button"><i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
-        </div>
+          <div class="buttons-options">
+              <button style="color: #fff;" class="button-next" id="login-button">Continuar</button>
+          </div>
+
+      </div>
         
 
       </div>
     </div>
 
-    <div id="modal" class="hide">
-      <div class="modal-headers">
-        <h2>Escolha uma chave PIX</h2>
-        <button id="close-modal"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="modal-body">
-        <div class="input-group">
-            <label for="email">R$
-                <input type="number" name="email" id="email" placeholder="0,00">
-              </label>
-        </div>
-
-
-        </div>
-
-        <div class="buttons-options">
-            <button class="button-cancel">Cancelar</button>
-            <button id="login-button"><i class="fa-solid fa-arrow-right" style="color: #ffffff;"></i></button>
-        </div>
-        
-
-      </div>
-    </div>
 
     <script src="{% static 'cliente/js/cliente-modal.js'%}"></script>
 
