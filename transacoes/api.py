@@ -21,3 +21,9 @@ def get_dados_por_chave_pix(request, transacao: TransacoesSchema):
         response = {"cpf": conta.cliente.cpf, "banco": conta.banco, "nome":\
                     conta.cliente.nome_completo}
         return response
+
+@transactions_router.post('/pagamentos/pix/pagar', response={200: dict, 400: dict, 500: dict})
+def realizar_pagamento(request, transacao: TransacoesSchema):
+        conta = get_object_or_404(Conta, chave_pix=transacao.chave_pix)
+        
+        return response

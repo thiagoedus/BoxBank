@@ -76,7 +76,7 @@ button:hover {
   pointer-events: all;
 }
 
-.modal-all {
+.modal-all, .modal-pagamento {
   display: none;
 }
 
@@ -213,7 +213,7 @@ input[type="number"] {
   text-decoration: none;
 }
 
-#login-button {
+.btn-continuar {
     background-color: #189FD9;
     border: none;
     border-radius: 30px;

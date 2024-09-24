@@ -1,19 +1,28 @@
-from ninja import Router
+from ninja import Router, Schema
 from .models import Conta
 from django.shortcuts import get_object_or_404
 from utils import criptografa_cpf
 from django.db import transaction as django_transaction
 from transacoes.models import Transacao
 
+
+# TODO alterar para class Decimal
+class SaldoSchema(Schema):
+    saldo: float
+
 cliente_router = Router()
 
-@cliente_router.get('/{chave_pix}')
-def get_cliente_for_pix(request, chave_pix: str):
-    conta = get_object_or_404(Conta, chave_pix=chave_pix)
-    conta.cliente.cpf = criptografa_cpf(conta.cliente.cpf)
-    response = {"cpf": conta.cliente.cpf, "banco": conta.banco, "nome":\
-                 conta.cliente.nome_completo}
-    return response
+
+@cliente_router.post('/verificar_saldo', response={200: dict, 400: dict, 403: dict, 422: dict})
+def get_cliente_for_pix(request, valor: SaldoSchema):
+    conta = get_object_or_404(Conta, cliente__id=request.user.id)
+    if not valor.saldo or not isinstance(valor.saldo, float):
+        return {"code": 0, "msg": "Ocorreu um erro, verifique os dados e tente novamente"}
+    if valor.saldo <= 0.0:
+        return {"code": 0, "msg": 'O valor não pode ser negativo'}
+    if valor.saldo > float(conta.saldo):
+        return {"code": 0, "msg": "Saldo insuficiente"}
+    return {"code": 1}
 
 
 @cliente_router.post('/{chave_pix}', response={200: dict, 400: dict, 403: dict})

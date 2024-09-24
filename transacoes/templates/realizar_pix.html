@@ -31,7 +31,7 @@
         <div class="modal-body">
           <div class="input-group">
               <label for="">R$
-                  <input type="number" name="email" id="email" placeholder="0,00">
+                  <input type="number" name="valor-pix" id="valor-pix" placeholder="0,00">
                 </label>
           </div>
 
@@ -40,12 +40,12 @@
 
           <div class="buttons-options">
               <button class="button-cancel">Cancelar</button>
-              <button style="color: #fff;" class="button-next" id="login-button">Continuar</button>
+              <button style="color: #fff;" class="btn-continuar button-next" id="login-button">Continuar</button>
           </div>
 
       </div>
 
-      <div class="modal-all ">
+      <div class="modal-all">
         <div class="modal-headers">
           <button style="margin-top: 5px; margin-right: 3px;" class="button-prev"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i></button>
           <h2>Digite uma chave PIX</h2>
@@ -62,7 +62,23 @@
           </div>
 
           <div class="buttons-options">
-              <button style="color: #fff;" class="button-next" id="login-button">Continuar</button>
+              <button class="btn-continuar" style="color: #fff;" id="req-dados" onclick="getDadosComPix()">Continuar</button>
+          </div>
+
+      </div>
+
+      <div class="modal-pagamento">
+        <div class="modal-headers">
+  
+          <h2>Verifique os dados</h2>
+          <button style="background: none;" id="close-modal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body">
+          <span id="dados-recebedor"></span>
+          </div>
+
+          <div class="buttons-options">
+              <button style="color: #fff;" class="btn-continuar" id="payment-button">Pagar</button>
           </div>
 
       </div>
