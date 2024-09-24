@@ -6,13 +6,7 @@ from .schemas import TransacoesSchema
 
 transactions_router = Router()
 
-# @transactions_roter.post('/', response={200: dict, 400: dict, 500: dict})
-# def get_datos_transacao(request):
-#     transacao = transacao.objects.all()
-#     response = [{"id": u.id, "username": u.username, "first_name": u.first_name\
-#                  , "last_name": u.last_name, "cpf": u.cpf, "email": u.email, "amount": u.amount\
-#                     } for u in users]
-#     return response
+
 
 @transactions_router.post('/pagamentos/pix', response={200: dict, 400: dict, 500: dict})
 def get_dados_por_chave_pix(request, transacao: TransacoesSchema):
