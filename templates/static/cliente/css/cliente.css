@@ -33,7 +33,7 @@
 /* Modal */
 
 .close-modal {
-  display: none;
+  margin-left: auto;
   cursor: pointer;
   border: none;
   color: #fff;

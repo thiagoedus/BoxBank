@@ -115,7 +115,7 @@ function getDadosComPix() {
 
       document.querySelector('.modal-pagamento').classList.add('modal-step-active')
 
-      document.querySelector('#dados-recebedor').innerHTML = `<span>Beneficiário: ${result['nome']}</span><br><span>CPF: ${result['cpf']}</span><br><span>Banco: ${result['banco']}</span>`
+      document.querySelector('#dados-recebedor').innerHTML = `<span>Beneficiário: ${result['nome']}</span><br><span>CPF: ${result['cpf']}</span><br><span>Banco: ${result['banco']}<br><span>Valor: R$${valorPix.value}</span>`
 
       console.log(result)
     })
@@ -143,3 +143,16 @@ function realizarPagamento() {
   }).then(response => response.json())
   .then(result => console.log(result))
 }
+
+const cancelPix = document.querySelector('#cancel-pix')
+
+cancelPix.addEventListener('click', () => {
+  modalSteps.forEach(modalStep => {
+    modalStep.classList.contains('modal-step-active') && modalStep.classList.remove('modal-step-active')
+  })
+  valorPix.value = null;
+  document.querySelector('#chave-pix').value = null;
+  modalStepsNum = 0;
+  updateModalSteps()
+  toggleModal();  
+})

@@ -3,9 +3,9 @@
 
 
 {% block 'head' %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'cliente/css/cliente.css' %}">
-    <link rel="stylesheet" href="{% static 'cliente/css/home.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link rel="stylesheet" href="{% static 'cliente/css/cliente.css' %}">
+<link rel="stylesheet" href="{% static 'cliente/css/home.css' %}">
 {% endblock %}
 
 {% block 'body' %}
@@ -18,77 +18,76 @@
 
 </div>
 
-    <br>
-    <button style="background-color: #189FD9;" class="btn btn-success container" id="open-modal" type="button" id="open-modal">Transferir</button>
-    <!-- <div id="modal" class="hide"></div> -->
-    <div id="fade" class="hide"></div>
-    <div id="modal" class="hide">
-      <div class="modal-all modal-step-active">
-        <div class="modal-headers">
-          <h2>Digite o valor da transferência</h2>
-          <button class="close-modal"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <div class="modal-body">
-          <div class="input-group">
-              <label for="">R$
-                  <input type="number" name="valor-pix" id="valor-pix" placeholder="0,00">
-                </label>
-          </div>
-
-
-          </div>
-
-          <div class="buttons-options">
-              <button class="button-cancel">Cancelar</button>
-              <button style="color: #fff;" class="btn-continuar button-next" id="login-button">Continuar</button>
-          </div>
-
+<br>
+<button style="background-color: #189FD9;" class="btn btn-success container" id="open-modal" type="button"
+  id="open-modal">Transferir</button>
+<!-- <div id="modal" class="hide"></div> -->
+<div id="fade" class="hide"></div>
+<div id="modal" class="hide">
+  <div class="modal-all modal-step-active">
+    <div class="modal-headers">
+      <h2>Digite o valor da transferência</h2>
+      <button class="close-modal"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <div class="input-group">
+        <label style="margin-bottom: -12px;" for="">R$
+          <input type="number" name="valor-pix" id="valor-pix" placeholder="0,00">
+        </label>
       </div>
 
-      <div class="modal-all">
-        <div class="modal-headers">
-          <button style="margin-top: 5px; margin-right: 3px;" class="button-prev"><i class="fa-solid fa-arrow-left" style="color: #ffffff;"></i></button>
-          <h2>Digite uma chave PIX</h2>
-        </div>
-        <div class="modal-body">
-          <div class="input-group">
-              <label for="">
-                  <input type="text" name="chave-pix" id="chave-pix" placeholder="Informe a chave PIX">
-                </label>
-          </div>
 
+    </div>
 
-          </div>
+    <div class="buttons-options">
+      <button style="color: #fff; width: 50%; margin-left: 50%;" class="btn-continuar button-next"
+        id="login-button">Continuar</button>
+    </div>
 
-          <div class="buttons-options">
-              <button class="btn-continuar" style="color: #fff;" id="req-dados" onclick="getDadosComPix()">Continuar</button>
-          </div>
+  </div>
 
-      </div>
+  <div class="modal-all">
+    <div class="modal-headers">
+      <button style="margin-top: 5px; margin-right: 3px;" class="button-prev"><i class="fa-solid fa-arrow-left"
+          style="color: #ffffff;"></i></button>
+      <h2>Digite uma chave PIX</h2>
 
-      <div class="modal-pagamento">
-        <div class="modal-headers">
-  
-          <h2>Verifique os dados</h2>
-          <button style="background: none;" id="close-modal"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-        <div class="modal-body">
-          <span id="dados-recebedor"></span>
-          </div>
-
-          <div class="buttons-options">
-              <button style="color: #fff;" class="btn-continuar" id="payment-button">Pagar</button>
-          </div>
-
-      </div>
-        
-
+    </div>
+    <div class="modal-body">
+      <div class="input-group">
+        <label for="">
+          <input type="text" name="chave-pix" id="chave-pix" placeholder="Informe a chave PIX">
+        </label>
       </div>
     </div>
 
+    <div class="buttons-options">
+      <button class="btn-continuar" style="color: #fff; width: 50%; margin-left: 50%;" id="req-dados" onclick="getDadosComPix()">Continuar</button>
+    </div>
 
-    <script src="{% static 'cliente/js/cliente-modal.js'%}"></script>
+  </div>
+
+  <div class="modal-all modal-pagamento">
+    <div class="modal-headers">
+
+      <h2>Verifique os dados</h2>
+      <button style="background: none; display: none;" id="close-modal"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="modal-body">
+      <span id="dados-recebedor"></span>
+    </div>
+
+    <div class="buttons-options">
+      <button id="cancel-pix" class="button-cancel">Cancelar</button>
+      <button style="color: #fff;" class="btn-continuar" id="payment-button">Pagar</button>
+    </div>
+
+  </div>
+
+
+</div>
+
+
+<script src="{% static 'cliente/js/cliente-modal.js'%}"></script>
 
 {% endblock %}
-
-
