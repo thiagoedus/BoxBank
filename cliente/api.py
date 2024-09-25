@@ -35,13 +35,16 @@ def get_cliente_for_pix(request, valor: SaldoSchema):
     return {"code": 1}
 
 @cliente_router.post('/realizar-pix', response={200: dict, 400: dict, 403: dict, 422: dict})
-def get_cliente_for_pix(request, dados_pix: DadosPixSchema):
+def realizar_pix(request, dados_pix: DadosPixSchema):
     conta = get_object_or_404(Conta, cliente__id=request.user.id)
     if not dados_pix.valor or dados_pix.valor == 0:
         return 403, {"msg": "Valor inválido"}
     if dados_pix.valor > conta.saldo:
         return 400, {"msg": "Saldo insuficiente"}
     conta_beneficiaria = get_object_or_404(Conta, chave_pix=dados_pix.chave_pix)
+
+    if conta_beneficiaria.id == conta.id:
+        return 403, {"msg": "Impossível tranferir para a mesma conta"}
 
     with django_transaction.atomic():
         conta.saque(dados_pix.valor)
