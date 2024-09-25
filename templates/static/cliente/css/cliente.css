@@ -32,7 +32,7 @@
 
 /* Modal */
 
-#close-modal {
+.close-modal {
   display: none;
   cursor: pointer;
   border: none;
