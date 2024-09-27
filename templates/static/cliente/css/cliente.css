@@ -221,7 +221,7 @@ input[type="number"] {
     height: 40px;
 }
 
-#login-button:hover {
-  background-color: #177ba6;
-  cursor: pointer;
+.btn-continuar:hover {
+background-color: #177ba6;
+cursor: pointer;
 }

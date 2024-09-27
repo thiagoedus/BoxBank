@@ -20,10 +20,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Debug Toolbar
     "debug_toolbar",
+    # My apps
     'cliente',
     'operacoes',
     'cartaocredito',
-    'transacoes'
+    'transacoes',
+    'comprovantes'
 ]
 
 MIDDLEWARE = [
